@@ -8,12 +8,13 @@ export const metadata: Metadata = {
 };
 
 
-const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
+const AuthLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (
         <main>
+            {/* <Header /> */}
             {children}
         </main>
     );
 };
 
-export default RootLayout;
+export default AuthLayout;

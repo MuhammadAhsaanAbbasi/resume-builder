@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 // import Header from '@/components/Navigation/Header/Header';
 
 export const metadata: Metadata = {
-    title: "Resume Builder",
+    title: "SkillForge - Resume Builder",
     description: "A.I based resume builder",
 };
 
