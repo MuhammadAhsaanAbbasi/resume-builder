@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
-// import Header from '@/components/Navigation/Header/Header';
+import Header from '@/components/navigation/Header';
 
 export const metadata: Metadata = {
     title: "SkillForge - Resume Builder",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (
         <main>
-            {/* <Header /> */}
+            <Header />
             {children}
         </main>
     );
