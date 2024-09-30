@@ -11,7 +11,7 @@ import {
     DialogTitle,
     DialogTrigger,
     DialogContent,
-} from "../ui/dialog"; // Use Shadcn components, not @radix-ui/react-dialog.
+} from "../ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { useForm } from "react-hook-form";
@@ -51,15 +51,15 @@ const AddResume = () => {
         startTransition(() => {
             generateResume(UserId, UserName, values)
                 .then((data) => {
-                    setError(data.error)
-                    setSuccess(data.messege)
+                    setError(data.error);
+                    setSuccess(data.messege);
                     if (data?.error) {
                         toast({
                             title: "Failed",
                             description: data?.error,
                             variant: "destructive",
                             duration: 2000,
-                        })
+                        });
                     }
                     if (data?.success) {
                         toast({
@@ -77,12 +77,11 @@ const AddResume = () => {
                     form.reset();
                     setOpenDialog(false);
                 });
-        })
+        });
     };
 
     return (
         <div>
-            {/* Use DialogTrigger for consistent behavior */}
             <Dialog open={openDialog} onOpenChange={setOpenDialog}>
                 <DialogTrigger asChild>
                     <Button
