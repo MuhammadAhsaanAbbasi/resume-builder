@@ -4,6 +4,8 @@ import * as z from "zod"
 import { v4 as uuidv4 } from 'uuid';
 
 
+const TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_KEY!
+
 export const generateResume = async (userId:string, userName:string,
     values: z.infer<typeof resumeSchema>) => {
     const ValidatedTypes = resumeSchema.safeParse(values)
@@ -12,8 +14,7 @@ export const generateResume = async (userId:string, userName:string,
         return {error: "Invalid Types"}
     }
 
-    const { title } = ValidatedTypes.data
-    const TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_KEY!
+    const { title } = ValidatedTypes.data;
     const data = {
         data: {
             title: title,
@@ -42,6 +43,36 @@ export const generateResume = async (userId:string, userName:string,
         console.log(response.data.documentId);
 
         return { success: response.data.documentId,  "messege": "Resume created"}
+
+    } catch (error) {
+        if(error instanceof Error){
+            return { error: "Invalid credentials!", message: error.message };
+        }
+        return { message: error }
+    }
+}
+
+
+export const getResumeList = async (UserId:string) => {
+    try {
+        const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes?filters[userId][$eq]=${UserId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${TOKEN}`,
+            },
+            method: "GET",
+        })
+
+        if(request.status !== 200){
+            const error = await request.json();
+            return { error: error.detail };
+        }
+
+        const response = await request.json();
+        
+        console.log(response);
+
+        return { success: response.data,  "messege": "Resume Details"}
 
     } catch (error) {
         if(error instanceof Error){

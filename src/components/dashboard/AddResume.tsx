@@ -85,7 +85,7 @@ const AddResume = () => {
             <Dialog open={openDialog} onOpenChange={setOpenDialog}>
                 <DialogTrigger asChild>
                     <Button
-                        className="p-14 px-24 border items-center flex justify-center bg-secondary rounded-lg h-[280px] hover:scale-105 transition-all hover:shadow-md cursor-pointer border-dashed text-black"
+                        className="p-10 px-20 border items-center flex justify-center bg-secondary rounded-lg h-[280px] hover:scale-105 transition-all hover:shadow-md cursor-pointer border-dashed text-black"
                         onClick={() => setOpenDialog(true)} // Open the dialog on click
                     >
                         <PlusSquare className="h-14 w-14" />
