@@ -1,3 +1,4 @@
+import ResumeEditPreview from '@/components/resume/ResumeEditPreview';
 import React from 'react'
 
 
@@ -9,7 +10,7 @@ interface Iprops {
 
 const ResumeEditPage = ({ params: {resume_id} }: Iprops) => {
     return (
-        <div>ResumeEditPage {resume_id} </div>
+        <ResumeEditPreview resume_id={resume_id} />
     )
 }
 
