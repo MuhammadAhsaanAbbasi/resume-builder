@@ -47,7 +47,7 @@ const ResumeListItem = ({ resume }: { resume: ResumeParams }) => {
             </div>
             <div className='w-full p-0.5 bg-gradient-to-b from-pink-100 via-purple-200 to-blue-200' />
             <div className='flex justify-between items-center gap-2'>
-                <ViewIcon />
+                <ViewIcon onClick={() => router.push(`/dashboard/resume/${resume.documentId}/view`)} className='h-6 w-6 text-primary cursor-pointer hover:scale-105 transition-all' />
                 <Button className='flex justify-center items-center gap-2'
                     onClick={() => router.push(`/dashboard/resume/${resume.documentId}/edit`)}
                 >
