@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import Link from "next/link";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { StarHalfIcon } from "lucide-react";
+import Image from "next/image";
 
 export const InfiniteMovingCards = ({
     items,
@@ -76,7 +77,7 @@ export const InfiniteMovingCards = ({
 
     useEffect(() => {
         addAnimation();
-    }, [addAnimation]);
+    }, []);
 
     const getStars = (rating: number) => {
         const fullStars = Math.floor(rating);
@@ -146,10 +147,15 @@ export const InfiniteMovingCards = ({
                             </div>
                             <div className="relative z-20 mt-6 flex flex-row items-center">
                                 <Link href={item.link} className="flex items-center gap-2">
-                                    <Avatar>
-                                        <AvatarImage src={item.picture} />
-                                        <AvatarFallback>{item.name}</AvatarFallback>
-                                    </Avatar>
+                                    <div className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                        <Image
+                                            src={item.picture}
+                                            alt={item.name}
+                                            height={50}
+                                            width={50}
+                                            className="aspect-square h-full w-full"
+                                        />
+                                    </div>
                                     <span className="text-sm leading-[1.6] text-[#1E2532] font-normal hover:underline-offset-2">
                                         {item.name}
                                     </span>

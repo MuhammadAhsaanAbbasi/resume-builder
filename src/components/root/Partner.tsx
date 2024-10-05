@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Partner = () => {
     return (
-        <section className='bg-white flex items-center justify-center gap-[70px] p-3 border border-secondary'>
+        <section className='bg-white flex items-center justify-center gap-8 sm:gap-12 md:gap-16 lg:gap-[70px] p-3 border border-secondary'>
             {partners.map((partner) => (
                 <div key={partner.id} className="opacity-40">
                     <Image
