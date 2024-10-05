@@ -67,3 +67,61 @@ export const testimonials = [
         link: "https://www.linkedin.com/in/jahanzaib-tayyab/"
     }
 ];
+
+
+export const features = [
+    {
+        id: 1,
+        title: 'Easy online resume builder',
+        description: 'Create an awesome resume in minutes, without leaving your web browser.',
+        icon: 'https://myapplication-logos.s3.ap-south-1.amazonaws.com/easy-resume.png'
+    },
+    {
+        id: 2,
+        title: 'Automatic spell-checker',
+        description: 'Our built-in spell-checker takes care of the grammar for you. Create a resume with zero typos or errors.',
+        icon: 'https://myapplication-logos.s3.ap-south-1.amazonaws.com/automatic-spell.png'
+    },
+    {
+        id: 3,
+        title: 'Your data is safe',
+        description: 'Your data is kept private and protected by strong 256-bit encryption.',
+        icon: 'https://myapplication-logos.s3.ap-south-1.amazonaws.com/data-safe.png'
+    },
+    {
+        id: 4,
+        title: 'Automatic summary generator',
+        description: 'Create a powerful resume profile or cover letter in one click. Writer’s block is no longer an obstacle. Try for free!',
+        icon: 'https://myapplication-logos.s3.ap-south-1.amazonaws.com/automatic-summary.png'
+    },
+    {
+        id: 5,
+        title: 'Approved templates',
+        description: 'Professionally-designed resume templates and examples. Just edit and download in 5 minutes.',
+        icon: 'https://myapplication-logos.s3.ap-south-1.amazonaws.com/approved-template.png'
+    },
+    {
+        id: 6,
+        title: 'AI pre-written phrases',
+        description: 'Use the power of AI and data analysis, choose pre-generated effective phrases and keywords.',
+        icon: 'https://myapplication-logos.s3.ap-south-1.amazonaws.com/ai-pre-written.png'
+    },
+    {
+        id: 7,
+        title: 'Optimized resumes',
+        description: 'Formats and designs are optimized for resume-filtering algorithms. Ensure humans see your application!',
+        icon: 'https://myapplication-logos.s3.ap-south-1.amazonaws.com/optimized-resume.png'
+    },
+    {
+        id: 8,
+        title: 'Multi-format resume options',
+        description: 'Save your perfect resume in any common format, including Microsoft Word and PDF in a single click.',
+        icon: 'https://myapplication-logos.s3.ap-south-1.amazonaws.com/multi-format-resume.png'
+    },
+    {
+        id: 9,
+        title: 'Cover letters',
+        description: 'Our cover letter builder works with the same ease and use of elegant templates as the resume creator.',
+        icon: 'https://myapplication-logos.s3.ap-south-1.amazonaws.com/cover-letter.png'
+    }
+];
