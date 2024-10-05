@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
+import { Baloo_2 as FontSans } from "next/font/google"
+import { cn } from "@/lib/utils";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+
 
 export const metadata: Metadata = {
   title: "SkillForge - Resume Builder",
@@ -27,7 +35,10 @@ export default function RootLayout({
     >
       <html lang="en">
         <body
-          className={'antialiased'}
+          className={cn(
+            "font-sans antialiased",
+            fontSans.variable
+          )}
         >
           {children}
           <Toaster />
