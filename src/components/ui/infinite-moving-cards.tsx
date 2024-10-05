@@ -2,6 +2,10 @@
 
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import Link from "next/link";
+import { StarFilledIcon } from "@radix-ui/react-icons";
+import { StarHalfIcon } from "lucide-react";
 
 export const InfiniteMovingCards = ({
     items,
@@ -11,9 +15,11 @@ export const InfiniteMovingCards = ({
     className,
 }: {
     items: {
+        rating: number;
         quote: string;
         name: string;
-        title: string;
+        picture: string;
+        link: string;
     }[];
     direction?: "left" | "right";
     speed?: "fast" | "normal" | "slow";
@@ -71,6 +77,39 @@ export const InfiniteMovingCards = ({
     useEffect(() => {
         addAnimation();
     }, [addAnimation]);
+
+    const getStars = (rating: number) => {
+        const fullStars = Math.floor(rating);
+        const halfStar = rating % 1 !== 0;
+        const stars = [];
+
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(
+                <span key={`full-${i}`} className="text-[#FFD700]">
+                    <StarFilledIcon className="h-5 w-5" />
+                </span>
+            );
+        }
+
+        if (halfStar) {
+            stars.push(
+                <span key="half" className="text-[#FFD700]">
+                    <StarHalfIcon className="h-5 w-5" />
+                </span>
+            );
+        }
+
+        for (let i = fullStars + (halfStar ? 1 : 0); i < 5; i++) {
+            stars.push(
+                <span key={`empty-${i}`} className="text-[#D3D3D3]">
+                    <StarFilledIcon className="h-5 w-5" />
+                </span>
+            );
+        }
+
+        return stars;
+    };
+
     return (
         <div
             ref={containerRef}
@@ -97,18 +136,24 @@ export const InfiniteMovingCards = ({
                                 aria-hidden="true"
                                 className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
                             ></div>
-                            <span className=" relative z-20 text-sm leading-[1.6] text-gray-100 font-normal">
-                                {item.quote}
-                            </span>
+                            <div className="flex flex-col justify-start gap-2">
+                                <span className="flex justify-start mb-2">
+                                    {getStars(item.rating)}
+                                </span>
+                                <span className=" relative z-20 text-sm leading-[1.6] text-gray-100 font-normal">
+                                    {item.quote}
+                                </span>
+                            </div>
                             <div className="relative z-20 mt-6 flex flex-row items-center">
-                                <span className="flex flex-col gap-1">
-                                    <span className=" text-sm leading-[1.6] text-[#1E2532] font-normal">
+                                <Link href={item.link} className="flex items-center gap-2">
+                                    <Avatar>
+                                        <AvatarImage src={item.picture} />
+                                        <AvatarFallback>{item.name}</AvatarFallback>
+                                    </Avatar>
+                                    <span className="text-sm leading-[1.6] text-[#1E2532] font-normal hover:underline-offset-2">
                                         {item.name}
                                     </span>
-                                    <span className=" text-sm leading-[1.6] text-[#1E2532] font-normal">
-                                        {item.title}
-                                    </span>
-                                </span>
+                                </Link>
                             </div>
                         </blockquote>
                     </li>

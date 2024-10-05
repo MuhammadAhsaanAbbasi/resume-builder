@@ -28,32 +28,42 @@ export const partners = [
 
 export const testimonials = [
     {
+        rating: 5,
         quote:
-            "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
+            "This tool has been a game-changer for me. The AI recommendations are tailored perfectly to the job descriptions I was applying to. My resume looks more polished than ever before. The user interface is clean, and it even tracks different versions of my resume for different job applications. Highly recommend this SaaS for anyone serious about their job hunt!.",
         name: "Hamzah Syed",
-        title: "A Tale of Two Cities",
+        picture: "https://avatars.githubusercontent.com/u/50793209?v=4",
+        link: "https://www.linkedin.com/in/webdeveloper-react-jamstack-expert/"
     },
     {
+        rating: 4,
         quote:
-            "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+            "The AI Resume Builder is quite impressive. It really cuts down the time spent on creating resumes. The templates are modern, and the AI suggestions are spot-on for tailoring content based on my career path. I would give it 5 stars, but I feel like there could be more customization options for font and color schemes. Other than that, it's a solid tool for anyone looking to streamline their job application process.",
+        name: "Adrian Hajdin",
+        picture: "https://avatars.githubusercontent.com/u/24898559?v=4",
+        link: "https://www.linkedin.com/in/adrianhajdin/"
+    },
+    {
+        rating: 5,
+        quote:
+            "AI Resume Builder made the entire process of creating a resume feel like a breeze! The AI suggestions for content and design choices were excellent. My favorite part is how it aligns each section perfectly with the job industry I’m applying to. My resume has never looked better, and I’ve already landed more interviews than before!",
         name: "Ameen Alam",
-        title: "Hamlet",
+        picture: "https://avatars.githubusercontent.com/u/31050254?v=4",
+        link: "https://www.linkedin.com/in/ameen-alam/"
     },
     {
-        quote:
-            "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
-        name: "Herman Melville",
-        title: "Muhammad Usman",
-    },
-    {
-        quote: "All that we see or seem is but a dream within a dream.",
+        rating: 5,
+        quote: "Absolutely love this tool! It’s smart, easy to use, and saves so much time. The AI-driven recommendations help refine my resume in ways I never thought of. The templates are professional, and the whole process is smooth. I highly recommend it for anyone who wants to take their resume to the next level.",
         name: "Okasha Aijaz",
-        title: "A Dream Within a Dream",
+        picture: "https://avatars.githubusercontent.com/u/64710012?v=4",
+        link: "https://www.linkedin.com/in/okasha-aijaz/"
     },
     {
+        rating: 4,
         quote:
-            "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
-        name: "Aneeq Khatri",
-        title: "Pride and Prejudice",
+            "The platform is incredibly intuitive and saves a lot of time when it comes to building a professional resume. I particularly liked the AI suggestions for skills and achievements that aligned with my job title. The only downside was that I ran into a few minor bugs when formatting, but overall, a fantastic service!",
+        name: "Jahanzaib Tayyab",
+        picture: "https://avatars.githubusercontent.com/u/48027944?v=4",
+        link: "https://www.linkedin.com/in/jahanzaib-tayyab/"
     }
 ];
