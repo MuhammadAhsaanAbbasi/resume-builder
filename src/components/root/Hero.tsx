@@ -3,6 +3,7 @@ import { Button } from '../ui/button'
 import { Dot } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import CreateResumeButton from '../shared/CreateResumeButton'
 
 const Hero = () => {
     return (
@@ -17,9 +18,7 @@ const Hero = () => {
                         Use professional field-tested resume templates that follow the exact ‘resume rules’ employers look for. Easy to use and done within minutes - try now for free!
                     </p>
                 </div>
-                <Button size={"lg"} className='px-5 py-3'>
-                    Create my resume
-                </Button>
+                <CreateResumeButton />
             </div>
             <div className='flex flex-col items-center justify-center gap-1 w-full sm:w-[60vw]'>
                 <h4 className='flex items-center justify-center'>

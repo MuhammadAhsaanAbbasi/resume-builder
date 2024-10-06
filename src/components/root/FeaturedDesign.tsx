@@ -4,7 +4,7 @@ import { features } from '../../../constants/constant';
 
 const FeaturedDesign = () => {
     return (
-        <section className='h-full rounded-md flex flex-col antialiased bg-white items-center justify-center gap-6 relative overflow-hidden border-b-2 border-secondary py-10 md:py-20'>
+        <section className='h-full rounded-md flex flex-col antialiased bg-white items-center justify-center gap-6 py-10 md:py-20'>
             <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E2532] w-full md:w-[50vw] text-center'>
                 Features designed to help you win your dream job
             </h2>
