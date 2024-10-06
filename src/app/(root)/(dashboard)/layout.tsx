@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 
-const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
+const DashboardLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (
         <main>
             {children}
@@ -16,4 +16,4 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     );
 };
 
-export default RootLayout;
+export default DashboardLayout;

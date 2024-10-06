@@ -17,8 +17,8 @@ const Header = () => {
                 <Image
                     src={"https://myapplication-logos.s3.ap-south-1.amazonaws.com/SkillForge.png"}
                     alt='SkillForge'
-                    width={80}
-                    height={50}
+                    width={60}
+                    height={60}
                     className='w-20 h-auto md:w-auto' 
                     priority
                 />
