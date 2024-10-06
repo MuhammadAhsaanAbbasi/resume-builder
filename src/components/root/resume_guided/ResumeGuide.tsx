@@ -8,7 +8,7 @@ import ProfessionalGuidedSection from './ProfessionalGuidedSection'
 
 const ResumeGuide = () => {
     return (
-        <section className='h-full bg-secondary rounded-md flex flex-col antialiased items-center justify-center gap-10 p-10 lg:p-20'>
+        <section className='h-full bg-secondary rounded-md flex flex-col antialiased items-center justify-center gap-10 p-12 lg:p-24'>
             <GuidedHeroSection />
             <GuidedFeatureSection />
             <ProfessionalGuidedSection />

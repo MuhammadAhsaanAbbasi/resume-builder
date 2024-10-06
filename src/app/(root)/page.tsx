@@ -5,6 +5,8 @@ import Partner from "@/components/root/Partner";
 import Reviews from "@/components/root/Reviews";
 import ResumeGuide from "@/components/root/resume_guided/ResumeGuide";
 import ResumeApplicationInfo from "@/components/root/ResumeApplicationInfo";
+import FrequentAnswerQuestion from "@/components/root/Faq";
+import JoinOver from "@/components/root/JoinOver";
 
 export default function Home() {
   return (
@@ -15,6 +17,8 @@ export default function Home() {
       <FeaturedDesign />
       <ResumeGuide />
       <ResumeApplicationInfo />
+      <FrequentAnswerQuestion />
+      <JoinOver />
     </>
   );
 }

@@ -18,9 +18,9 @@ import Image from 'next/image';
 
 export function ApplicationInfoTabs() {
     return (
-        <Tabs defaultValue="sign-up" className="w-full max-w-5xl p-8">
+        <Tabs defaultValue="sign-up" className="w-full max-w-5xl p-5">
             <TabsList className="grid w-full grid-cols-3 gap-4 my-2">
-                <TabsTrigger value="sign-up" className="text-lg font-semibold text-[#1E2532]">1. Sign Up</TabsTrigger>
+                <TabsTrigger value="sign-up" className="text-lg font-semibold text-[#738dbd]">1. Sign Up</TabsTrigger>
                 <TabsTrigger value="create" className="text-lg font-semibold text-[#1E2532]">2. Create</TabsTrigger>
                 <TabsTrigger value="download" className="text-lg font-semibold text-[#1E2532]">3. Download</TabsTrigger>
             </TabsList>
