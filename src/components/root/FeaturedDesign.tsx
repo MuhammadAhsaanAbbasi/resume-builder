@@ -5,7 +5,7 @@ import { features } from '../../../constants/constant';
 const FeaturedDesign = () => {
     return (
         <section className='h-full rounded-md flex flex-col antialiased bg-white items-center justify-center gap-6 py-10 md:py-20'>
-            <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E2532] w-full md:w-[50vw] text-center'>
+            <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold w-full md:w-[50vw] text-center'>
                 Features designed to help you win your dream job
             </h2>
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-5 px-20">
@@ -20,9 +20,9 @@ const FeaturedDesign = () => {
                                 className='w-14 h-auto md:w-auto'
                             />
                         </div>
-                        <div className='text-[#1E2532]'>
-                            <h3 className="text-lg font-bold">{feature.title}</h3>
-                            <p className="text-sm leading-relaxed">{feature.description}</p>
+                        <div>
+                            <h3 className="text-xl font-bold">{feature.title}</h3>
+                            <p className="text-base font-medium">{feature.description}</p>
                         </div>
                     </div>
                 ))}

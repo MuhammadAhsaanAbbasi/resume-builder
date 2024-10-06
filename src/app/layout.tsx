@@ -36,7 +36,7 @@ export default function RootLayout({
       <html lang="en">
         <body
           className={cn(
-            "font-sans antialiased",
+            "font-sans antialiased text-[#1E2532]",
             fontSans.variable
           )}
         >

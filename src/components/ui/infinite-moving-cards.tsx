@@ -156,7 +156,7 @@ export const InfiniteMovingCards = ({
                                             className="aspect-square h-full w-full"
                                         />
                                     </div>
-                                    <span className="text-sm leading-[1.6] text-[#1E2532] font-normal hover:underline-offset-2">
+                                    <span className="text-sm leading-[1.6] font-normal hover:underline-offset-2">
                                         {item.name}
                                     </span>
                                 </Link>

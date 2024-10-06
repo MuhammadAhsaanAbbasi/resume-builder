@@ -7,7 +7,7 @@ import CreateResumeButton from '../shared/CreateResumeButton'
 
 const Hero = () => {
     return (
-        <section className='flex flex-col items-center justify-center gap-4 bg-secondary text-[#1E2532]'>
+        <section className='flex flex-col items-center justify-center gap-4 bg-secondary'>
             <div className='flex flex-col items-center justify-center gap-5 mt-12 w-full sm:w-[60vw]'>
                 <div className='flex flex-col items-center justify-center gap-1 w-full sm:w-[50vw]'>
                     <h1 className='text-lg font-semibold text-[rgb(26,28,106)] text-center'>Online resume builder</h1>
