@@ -47,18 +47,18 @@ const ResumeGuide = () => {
             </section>
             <section className="grid grid-cols-1 md:grid-cols-3 gap-10 p-10">
                 {features.map((feature) => (
-                    <div key={feature.id} className="flex flex-col items-center text-center space-y-4">
+                    <div key={feature.id} className="flex flex-col items-center text-center justify-center lg:items-start lg:justify-start lg:text-left gap-3">
                         <div className="flex-shrink-0">
                             <Image
                                 src={feature.icon}
                                 alt={feature.title}
-                                width={60}
-                                height={60}
+                                width={100}
+                                height={100}
                             />
                         </div>
-                        <div>
-                            <h3 className="text-xl font-bold text-[#1E2532] mb-2">{feature.title}</h3>
-                            <p className="text-sm text-[#1E2532] leading-relaxed">{feature.description}</p>
+                        <div className='text-[#1E2532]'>
+                            <h3 className="text-xl font-bold">{feature.title}</h3>
+                            <p className="text-sm leading-relaxed">{feature.description}</p>
                         </div>
                     </div>
                 ))}

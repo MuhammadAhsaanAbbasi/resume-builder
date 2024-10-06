@@ -20,9 +20,9 @@ const FeaturedDesign = () => {
                                 className='w-14 h-auto md:w-auto'
                             />
                         </div>
-                        <div>
-                            <h3 className="text-lg font-bold text-[#1E2532]">{feature.title}</h3>
-                            <p className="text-sm text-[#1E2532] leading-relaxed">{feature.description}</p>
+                        <div className='text-[#1E2532]'>
+                            <h3 className="text-lg font-bold">{feature.title}</h3>
+                            <p className="text-sm leading-relaxed">{feature.description}</p>
                         </div>
                     </div>
                 ))}
