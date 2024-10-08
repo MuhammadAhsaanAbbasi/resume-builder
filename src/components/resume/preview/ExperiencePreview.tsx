@@ -3,7 +3,7 @@ import React from 'react'
 const ExperiencePreview = ({ resume_info }: { resume_info: UserData }) => {
     const themeColor = resume_info.themeColor;
     return (
-        <div className='my-2'>
+        <div className='my-4'>
             <h3 className='text-xl font-serif font-bold'>Experience</h3>
             {resume_info.experience.map((experience, index) => (
                 <div key={index} className='my-1'>
@@ -12,7 +12,11 @@ const ExperiencePreview = ({ resume_info }: { resume_info: UserData }) => {
                         <h5 className='text-base font-medium'>
                             {experience.companyName}, {experience.city}, {experience.state}
                         </h5>
-                        <p className={`text-base text-[${themeColor}]`}>
+                        <p className={`text-base`}
+                        style={{
+                            color: themeColor,
+                        }}
+                        >
                             {experience.startDate} - {!experience.currentlyWorking ? experience.endDate
                                 :
                                 "Present"
