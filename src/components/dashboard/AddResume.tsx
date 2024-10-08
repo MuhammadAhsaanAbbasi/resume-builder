@@ -70,7 +70,7 @@ const AddResume = () => {
                                 <ToastAction altText="Update Resume!!">Update Now!</ToastAction>
                             ),
                         });
-                        router.push(`/dashboard/resume/${data.success}/edit`);
+                        router.push(`/resume/${data.success}/edit`);
                     }
                 })
                 .finally(() => {
