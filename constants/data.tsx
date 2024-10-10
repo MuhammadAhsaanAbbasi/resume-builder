@@ -1,3 +1,9 @@
+import { EditPersonalDetails } from "@/components/resume/edit/EditPersonalDetails"
+import { EditProfileSummary } from "@/components/resume/edit/EditProfileSummary"
+import { EducationEdit } from "@/components/resume/edit/EducationEdit"
+import { ExperienceEdit } from "@/components/resume/edit/ExperienceEdit"
+import { SkillsEdit } from "@/components/resume/edit/SkillsEdit"
+
 export const data: UserData = {
     firstName:'James',
     lastName:'Carter',
@@ -81,3 +87,26 @@ export const data: UserData = {
         }
     ]
 }
+
+export const activeSection = [
+    {
+        id:0,
+        section: EditPersonalDetails,
+    },
+    {
+        id: 1,
+        section: EditProfileSummary,
+    },
+    {
+        id: 2,
+        section: ExperienceEdit,
+    },
+    {
+        id: 3,
+        section: EducationEdit,
+    },
+    {
+        id: 4,
+        section: SkillsEdit,
+    }
+]
