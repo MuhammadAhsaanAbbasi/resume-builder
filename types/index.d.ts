@@ -42,8 +42,7 @@ declare interface UserData {
     firstName: string;
     lastName: string;
     jobTitle: string;
-    city: string;
-    country: string;
+    address: string;
     phone: string;
     email: string;
     themeColor: string;

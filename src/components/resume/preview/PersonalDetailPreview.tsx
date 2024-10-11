@@ -26,7 +26,7 @@ const PersonalDetailPreview = ({ resume_info }: { resume_info: UserData }) => {
                 <h2 className={`text-xm font-normal flex items-center gap-2`}>
                     <MapPin size={16} />
                     <span className='text-xs'>
-                        {resume_info.city}, {resume_info.country}
+                        {resume_info.address}
                     </span>
                 </h2>
                 <h2 className={`text-xm font-normal flex items-center gap-2`}>

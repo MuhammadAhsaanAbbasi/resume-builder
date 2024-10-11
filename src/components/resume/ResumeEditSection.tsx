@@ -65,7 +65,7 @@ const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
                 {activeSection.map((sections) => {
                     if (activeSectionIndex === sections.id) {
                         const SectionComponent = sections.section
-                        return <SectionComponent key={sections.id} />
+                        return <SectionComponent key={sections.id} resume_id={resume_id} />
                     }
                     return null
                 })}
