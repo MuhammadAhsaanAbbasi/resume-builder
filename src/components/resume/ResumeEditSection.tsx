@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 
 const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
     const [activeSectionIndex, setActiveSectionIndex] = useState(0)
-    // const { resumeInfo, setResumeInfo } = useResumeContext();
+    const [EnableNext, setEnableNext] = useState(true);
 
     const router = useRouter();
 
@@ -54,6 +54,7 @@ const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
                         size={"sm"}
                         className='flex items-center gap-2'
                         onClick={handleNext}
+                        disabled={EnableNext}
                     >
                         <span>Next</span>
                         <ArrowRight />
@@ -65,7 +66,11 @@ const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
                 {activeSection.map((sections) => {
                     if (activeSectionIndex === sections.id) {
                         const SectionComponent = sections.section
-                        return <SectionComponent key={sections.id} resume_id={resume_id} />
+                        return <SectionComponent 
+                        key={sections.id} 
+                        resume_id={resume_id} 
+                        setEnableNext={(v) => setEnableNext(v)}
+                        />
                     }
                     return null
                 })}

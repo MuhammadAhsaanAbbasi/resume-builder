@@ -4,7 +4,7 @@ import { Grid } from 'lucide-react'
 
 const ThemeButton = () => {
     return (
-        <Button className='flex items-center gap-2'>
+        <Button variant={"outline"} className='flex items-center gap-2'>
             <Grid />
             <span>
                 Theme

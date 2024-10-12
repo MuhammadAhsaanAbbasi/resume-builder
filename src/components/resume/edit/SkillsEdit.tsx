@@ -1,7 +1,16 @@
 import React from 'react'
 
-export const SkillsEdit = ({ resume_id }: { resume_id: string }) => {
+
+interface ResumeDetailsProps {
+    resume_id: string;
+    setEnableNext: (loading: boolean) => void;
+}
+
+export const SkillsEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) => {
     return (
-        <div>SkillsEdit</div>
+        <div className='p-5'>
+            <h2 className='font-bold text-lg'>Skills</h2>
+            <p>Add Your top professional key skills</p>
+        </div>
     )
 }
