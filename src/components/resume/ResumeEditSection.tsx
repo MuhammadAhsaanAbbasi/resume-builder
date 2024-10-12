@@ -7,7 +7,7 @@ import { useResumeContext } from '../context/ResumeContext'
 import { useRouter } from 'next/navigation'
 
 const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
-    const [activeSectionIndex, setActiveSectionIndex] = useState(0)
+    const [activeSectionIndex, setActiveSectionIndex] = useState(1);
     const [EnableNext, setEnableNext] = useState(true);
 
     const router = useRouter();
