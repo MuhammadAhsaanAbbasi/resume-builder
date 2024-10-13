@@ -46,8 +46,14 @@ declare interface UserData {
     phone: string;
     email: string;
     themeColor: string;
-    summery: string;
+    summary: string;
     experience: Experience[];
     education: Education[];
     skills: Skill[];
+}
+
+
+declare interface SummerParams {
+    summary: string;
+    experience_level: string
 }

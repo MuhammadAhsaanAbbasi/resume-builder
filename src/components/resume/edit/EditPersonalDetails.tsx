@@ -14,14 +14,15 @@ import FormSuccess from '@/components/shared/FormSuccess'
 import { UpdatePersonalDetails } from '@/lib/actions/resume.actions'
 import { toast } from '@/hooks/use-toast'
 import { ToastAction } from '@/components/ui/toast'
+import { LoaderCircle } from 'lucide-react'
 
 interface ResumeDetailsProps {
     resume_id: string;
-    setEnableNext: (loading: boolean) => void; 
+    setEnableNext: (loading: boolean) => void;
 }
 
 
-export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsProps ) => {
+export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsProps) => {
     const { resumeInfo, setResumeInfo } = useResumeContext();
 
     const [isPending, startTransition] = useTransition();
@@ -52,28 +53,28 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
     const onSubmit = async (values: z.infer<typeof resumePersonalDetailsSchema>) => {
         startTransition(() => {
             UpdatePersonalDetails(resume_id, values)
-            .then((data) => {
-                if (data?.error) {
-                    toast({
-                        title: "Failed",
-                        variant: "destructive",
-                        duration: 2000,
-                    });
-                }
-                if (data.success) {
-                    toast({
-                        title: "Updated!",
-                        description:(data.message) as string,
-                        duration: 2000,
-                        action: (
-                            <ToastAction altText="Update Resume!!">Updated</ToastAction>
-                        ),
-                    });
-                }
-            })
-            .finally(() => {
-                setEnableNext(false);
-            });
+                .then((data) => {
+                    if (data?.error) {
+                        toast({
+                            title: "Failed",
+                            variant: "destructive",
+                            duration: 2000,
+                        });
+                    }
+                    if (data.success) {
+                        toast({
+                            title: "Updated!",
+                            description: (data.message) as string,
+                            duration: 2000,
+                            action: (
+                                <ToastAction altText="Resume Update!!">Updated</ToastAction>
+                            ),
+                        });
+                    }
+                })
+                .finally(() => {
+                    setEnableNext(false);
+                });
         })
     }
 
@@ -223,7 +224,12 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                         type="submit"
                         className='rounded-md my-3 disabled:cursor-progress'
                         disabled={isPending}
-                        >Save Changes</Button>
+                    >
+                        {isPending ?
+                            <LoaderCircle className='animate-spin' />
+                            :
+                            'Save Changes'}
+                    </Button>
                 </form>
             </Form>
         </div>

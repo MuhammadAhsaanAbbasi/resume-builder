@@ -125,3 +125,35 @@ export const UpdatePersonalDetails = async (resumeId:string, values: z.infer<typ
         return { message: error }
     }
 }
+
+
+export const UpdateSummery = async (resumeId:string, summary:string) => {
+    try {
+        const data={
+            data:{
+                summary: summary
+            }
+        }
+        
+        const updateRequest = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${TOKEN}`,
+            },
+            method: "PUT",
+            body: JSON.stringify(data)
+        })
+
+        const updateResponse = await updateRequest.json();
+
+        // console.log(updateResponse)
+
+        return { success: updateResponse.data,  "message": "Successfully Resume Updated!!"}
+
+    } catch (error) {
+        if(error instanceof Error){
+            return { error: "Invalid credentials!", message: error.message };
+        }
+        return { message: error }
+    }
+}
