@@ -12,7 +12,7 @@ export const data: UserData = {
     phone:'(123)-456-7890',
     email:'exmaple@gmail.com',
     themeColor:"#ff6666",
-    summery:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    summary:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     experience:[
         {
             id:1,
@@ -23,7 +23,7 @@ export const data: UserData = {
             startDate:'Jan 2021',
             endDate:'',
             currentlyWorking:true,
-            workSummery:'Designed, developed, and maintained full-stack applications using React & Node.js.\n'+
+            workSummary:'Designed, developed, and maintained full-stack applications using React & Node.js.\n'+
             '• Implemented responsive user interfaces with React, ensuring seamless user experiences across various devices and browsers.\n'+
             '• Maintaining the React Native in-house organization application.'+
             '• Created RESTfulAPIs withNode.js and Express,facilitating data communication btw the front-end & back-end systems.'
@@ -37,7 +37,7 @@ export const data: UserData = {
             startDate:'May 2019',
             endDate:'Jan 2021',
             currentlyWorking:false,
-            workSummery:`Designed, developed, and maintained full-stack applications using React and Node.js. \n
+            workSummary:`Designed, developed, and maintained full-stack applications using React and Node.js. \n
             \n • Implemented responsive user interfaces with React, ensuring seamless user experiences across various devices and browsers. \n
             \n • Maintaining the React Native in-house organization application.\n
             \n • Created RESTfulAPIs withNode.js and Express,facilitating data communication btw the front-end & back-end systems.`

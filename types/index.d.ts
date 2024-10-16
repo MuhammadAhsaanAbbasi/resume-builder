@@ -1,5 +1,5 @@
 declare interface ResumeParams {
-    id: 8,
+    id: number,
     documentId: string,
     title: string,
     userId: string,
@@ -11,7 +11,7 @@ declare interface ResumeParams {
 }
 
 declare interface Experience {
-    id: number;
+    id: number | undefined ;
     title: string;
     companyName: string;
     city: string;
@@ -19,7 +19,7 @@ declare interface Experience {
     startDate: string;
     endDate: string;
     currentlyWorking: boolean;
-    workSummery: string;
+    workSummary: string;
 }
 
 declare interface Education {
