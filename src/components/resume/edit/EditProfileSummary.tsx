@@ -7,7 +7,7 @@ import { ToastAction } from '@/components/ui/toast';
 import { toast } from '@/hooks/use-toast';
 import { UpdateSummery } from '@/lib/actions/resume.actions';
 import { AISession } from '@/lib/gemini';
-import { Brain, LoaderCircle } from 'lucide-react';
+import { Bot, Brain, LoaderCircle } from 'lucide-react';
 import React, { FormEvent, useEffect, useState, useTransition } from 'react'
 
 
@@ -82,11 +82,11 @@ export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsPr
                         variant={"outline"}
                         type="button"
                         size={"sm"}
-                        className="border-primary text-primary flex items-center gap-2"
+                        className="border-primary text-primary hover:text-primary/80 flex items-center gap-2"
                         disabled={isPending}
                         onClick={generateSummary}
                     >
-                        <Brain className='h-5 w-5' />
+                        <Bot className='h-5 w-5' />
                         <span>Generate from A.I</span>
                     </Button>
                 </div>

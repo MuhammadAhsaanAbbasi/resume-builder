@@ -9,6 +9,10 @@ import { Input } from '@/components/ui/input';
 import { useResumeContext } from '@/components/context/ResumeContext';
 import { Button } from '@/components/ui/button';
 import { LoaderCircle, Plus, Trash } from 'lucide-react';
+import { UpdateExperience } from '@/lib/actions/resume.actions';
+import { toast } from '@/hooks/use-toast';
+import { ToastAction } from '@/components/ui/toast';
+import RichTextEditor from '@/components/shared/RichTextEditor';
 
 interface ResumeDetailsProps {
     resume_id: string;
@@ -72,15 +76,40 @@ export const ExperienceEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps)
         });
     };
 
-    const removeExperience = (index:number) => {
+    const removeExperience = (index: number) => {
         const updateExperienceList = experienceList.filter((_, i) => i !== index);
         removeFormExperience(index);
         setExperienceList(updateExperienceList);
     }
 
-    const onSubmit = (values: z.infer<typeof ExperienceFormSchema>) => {
-        setEnableNext(false);
-        console.log(`Values: ${values.experience}`)
+    const onSubmit = async (values: z.infer<typeof ExperienceFormSchema>) => {
+        startTransition(() => {
+            startTransition(() => {
+                UpdateExperience(resume_id, values)
+                    .then((data) => {
+                        if (data?.error) {
+                            toast({
+                                title: "Failed",
+                                variant: "destructive",
+                                duration: 2000,
+                            });
+                        }
+                        if (data.success) {
+                            toast({
+                                title: "Updated!",
+                                description: (data.message) as string,
+                                duration: 2000,
+                                action: (
+                                    <ToastAction altText="Resume Update!!">Updated</ToastAction>
+                                ),
+                            });
+                        }
+                    })
+                    .finally(() => {
+                        setEnableNext(false);
+                    });
+            })
+        })
     };
 
     return (
@@ -91,7 +120,7 @@ export const ExperienceEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps)
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <div>
                         {experienceFields.map((field, index) => (
-                            <div key={field.id} className='grid grid-cols-2 gap-3 border p-3 my-3 rounded-lg relative'>
+                            <div key={field.id} className='grid grid-cols-2 gap-3 border p-5 my-5 rounded-lg relative'>
                                 <FormField
                                     control={form.control}
                                     name={`experience.${index}.title`}
@@ -234,15 +263,28 @@ export const ExperienceEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps)
                                         </FormItem>
                                     )}
                                 />
-                                <div className='my-3 flex justify-end col-span-2'>
-                                <Button
-                                    type="button"
-                                    variant={"outline"}
-                                    onClick={() => removeExperience(index)}
-                                    disabled={isPending || isLoading}
-                                >
-                                    <Trash className="text-destructive hover:text-destructive/90" />
-                                </Button>
+                                <FormField
+                                    control={form.control}
+                                    name={`experience.${index}.workSummary`}
+                                    render={({ field }) => (
+                                        <RichTextEditor
+                                            {...field}
+                                            index={index}
+                                            defaultValue={field.value || ""}
+                                            onChange={(e) => updateResumeInfo('workSummary', e, index)}
+                                            isPending={isPending}
+                                        />
+                                    )}
+                                />
+                                <div className='flex justify-end col-span-2'>
+                                    <Button
+                                        type="button"
+                                        variant={"outline"}
+                                        onClick={() => removeExperience(index)}
+                                        disabled={isPending || isLoading}
+                                    >
+                                        <Trash className="text-destructive hover:text-destructive/90" />
+                                    </Button>
                                 </div>
                             </div>
                         ))}
