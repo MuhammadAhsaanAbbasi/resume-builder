@@ -19,26 +19,27 @@ interface ResumeDetailsProps {
 export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsProps) => {
     const { resumeInfo, setResumeInfo } = useResumeContext();
 
-    const [summary, setSummary] = useState("");
+    const [summary, setSummary] = useState(resumeInfo.summary || "");
     const [summeryLists, setSummeryLists] = useState<SummerParams[] | []>([]);
     const [isPending, startTransition] = useTransition();
 
     useEffect(() => {
-        summary && setResumeInfo({
-            ...resumeInfo,
-            summary: summary
+        startTransition(() => {
+            setResumeInfo({
+                ...resumeInfo,
+                summary: summary
+            })
         })
-    }, [summary])
-
+    }, [summary, setResumeInfo])
 
     const generateSummary = async () => {
         const prompt = `Job Title: ${resumeInfo.jobTitle} , Depends on job title give me list of  summery for 3 Experience levels: Fresher, Mid-Level, Experienced in 3 -4 lines in array format, With summery and experience_level Field in JSON Format`
         const request = await AISession.sendMessage(prompt);
-        const response: SummerParams[] = JSON.parse(request.response.text())
+        const response: SummerParams[] = JSON.parse(request.response.text());
 
-        console.log(response)
+        console.log(response);
 
-        setSummeryLists(response)
+        setSummeryLists(response);
     }
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -67,18 +68,18 @@ export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsPr
                 .finally(() => {
                     setEnableNext(false);
                 });
-        })
+        });
     }
-
 
     return (
         <div className='p-5'>
             <h2 className='font-bold text-lg'>Summary</h2>
-            <p>Add Summery according to your job title</p>
-            <form className='my-5' onSubmit={(e) => onSubmit(e)}>
+            <p>Add Summary according to your job title</p>
+            <form className='my-5' onSubmit={onSubmit}>
                 <div className='flex justify-between items-center gap-2'>
                     <Label>Add Summary</Label>
-                    <Button variant={"outline"}
+                    <Button
+                        variant={"outline"}
                         type="button"
                         size={"sm"}
                         className="border-primary text-primary flex items-center gap-2"
@@ -92,18 +93,19 @@ export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsPr
                 <Textarea
                     className='my-4'
                     value={summary}
-                    defaultValue={resumeInfo.summary}
                     onChange={(e) => setSummary(e.target.value)}
                 />
-                <Button
-                    type="submit"
-                    className='rounded-md my-3 disabled:cursor-progress'
-                    disabled={isPending}
-                >
-                    {isPending ?
-                        <LoaderCircle className='animate-spin' /> :
-                        'Save Change'}
-                </Button>
+                <div className='my-3 flex justify-end'>
+                    <Button
+                        type="submit"
+                        className='rounded-md disabled:cursor-progress'
+                        disabled={isPending}
+                    >
+                        {isPending ?
+                            <LoaderCircle className='animate-spin' /> :
+                            'Save Change'}
+                    </Button>
+                </div>
             </form>
             {
                 summeryLists.length > 0 && (
@@ -112,8 +114,8 @@ export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsPr
                         {
                             summeryLists.map((item, index) => (
                                 <div key={index}
-                                onClick={() => setSummary(item.summary)}
-                                className='p-5 shadow-lg my-4 rounded-lg cursor-pointer'
+                                    onClick={() => setSummary(item.summary)}
+                                    className='p-5 shadow-lg my-4 rounded-lg cursor-pointer'
                                 >
                                     <h3 className='my-1 font-bold text-primary'>{item.experience_level}</h3>
                                     <p>{item.summary}</p>

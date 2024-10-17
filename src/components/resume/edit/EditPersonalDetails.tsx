@@ -220,16 +220,17 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                         />
                     </div>
 
-                    <Button
-                        type="submit"
-                        className='rounded-md my-3 disabled:cursor-progress'
-                        disabled={isPending}
-                    >
-                        {isPending ?
-                            <LoaderCircle className='animate-spin' />
-                            :
-                            'Save Changes'}
-                    </Button>
+                    <div className='my-3 flex justify-end'>
+                        <Button
+                            type="submit"
+                            className='rounded-md disabled:cursor-progress'
+                            disabled={isPending}
+                        >
+                            {isPending ?
+                                <LoaderCircle className='animate-spin' /> :
+                                'Save Change'}
+                        </Button>
+                    </div>
                 </form>
             </Form>
         </div>

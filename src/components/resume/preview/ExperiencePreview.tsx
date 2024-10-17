@@ -23,7 +23,7 @@ const ExperiencePreview = ({ resume_info }: { resume_info: UserData }) => {
                             }
                         </p>
                     </div>
-                    <div className='text-xm my-2' dangerouslySetInnerHTML={{__html:experience.workSummery}} />
+                    <div className='text-xm my-2' dangerouslySetInnerHTML={{__html:experience.workSummary}} />
                 </div>
             ))}
         </div>
