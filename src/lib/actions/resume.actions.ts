@@ -186,7 +186,7 @@ export const UpdateExperience = async (resumeId:string,
 
         const updateResponse = await updateRequest.json();
 
-        console.log(`UpdatedResume: ${updateResponse}`) 
+        // console.log(`UpdatedResume: ${updateResponse}`) 
 
         return { success: updateResponse.data, "message": "Successfully Resume Updated!!"}
 

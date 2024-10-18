@@ -19,6 +19,7 @@ import { Button } from '../ui/button';
 import { Bot, LoaderCircle } from 'lucide-react';
 import { useResumeContext } from '../context/ResumeContext';
 import { AISession } from '@/lib/gemini';
+import { toast } from '@/hooks/use-toast';
 
 interface Props {
     onChange: (value: string) => void;
@@ -38,10 +39,17 @@ export default function RichTextEditor({ onChange, defaultValue, index, isPendin
 
     const generateSummary = async () => {
         startLoading(true);
+        if(!resumeInfo.experience[index].title) {
+            toast({
+                title: "Failed",
+                description: "Please add Position Title!",
+                variant: "destructive",
+                duration: 2000,
+            });
+        }
         const PROMPT = `Position title: ${resumeInfo.experience[index].title}. Based on this position title, provide 5-7 bullet points describing the experience for a resume in HTML tags. Do not include JSON or objects, just provide the bullet points in HTML list items.`
         const request = await AISession.sendMessage(PROMPT);
         const response = request.response.text();
-        console.log(response);
 
         setValue(response.replace('"','').replace('"',''));
         startLoading(false);
