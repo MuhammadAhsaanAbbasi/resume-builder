@@ -1,5 +1,5 @@
 "use server"
-import { ExperienceFormSchema, resumePersonalDetailsSchema, resumeSchema } from "@/schema/resume"
+import { EducationFormSchema, ExperienceFormSchema, resumePersonalDetailsSchema, resumeSchema } from "@/schema/resume"
 import * as z from "zod"
 import { v4 as uuidv4 } from 'uuid';
 
@@ -172,6 +172,47 @@ export const UpdateExperience = async (resumeId:string,
         const data={
             data:{
                 experience: experience
+            }
+        }
+        
+        const updateRequest = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${TOKEN}`,
+            },
+            method: "PUT",
+            body: JSON.stringify(data)
+        })
+
+        const updateResponse = await updateRequest.json();
+
+        // console.log(`UpdatedResume: ${updateResponse}`) 
+
+        return { success: updateResponse.data, "message": "Successfully Resume Updated!!"}
+
+    } catch (error) {
+        if(error instanceof Error){
+            return { error: "Invalid credentials!", message: error.message };
+        }
+        return { message: error }
+    }
+}
+
+
+export const UpdateEducation = async (resumeId:string, 
+    values: z.infer<typeof EducationFormSchema>) => {
+    const ValidatedTypes = EducationFormSchema.safeParse(values)
+
+    if(!ValidatedTypes.success){
+        return {error: "Invalid Types"}
+    }
+
+    const { education } = ValidatedTypes.data;
+    try {
+        console.log(education)
+        const data={
+            data:{
+                education: education
             }
         }
         
