@@ -39,27 +39,29 @@ export default function RichTextEditor({ onChange, defaultValue, index, isPendin
 
     const generateSummary = async () => {
         startLoading(true);
-        if(!resumeInfo.experience[index].title) {
+        if (!resumeInfo.experience[index].title) {
             toast({
                 title: "Failed",
                 description: "Please add Position Title!",
                 variant: "destructive",
                 duration: 2000,
             });
+            startLoading(false);
+            return;
         }
-        const PROMPT = `Position title: ${resumeInfo.experience[index].title}. Based on this position title, provide 5-7 bullet points describing the experience for a resume in HTML tags. Do not include JSON or objects, just provide the bullet points in HTML list items.`
+        const PROMPT = `Position title: ${resumeInfo.experience[index].title}. Based on this position title, provide 5-7 bullet points describing the experience for a resume in HTML tags. Do not include JSON or objects, just provide the bullet points in HTML list items.`;
         const request = await AISession.sendMessage(PROMPT);
-        const response = request.response.text();
+        const response = await request.response.text();
 
         setValue(response.replace('"','').replace('"',''));
+        onChange(response.replace('"','').replace('"','')); // Make sure to propagate the updated value to the parent.
         startLoading(false);
-    }
+    };
+
     return (
         <FormItem className='col-span-2 my-2'>
             <div className='flex justify-between items-center gap-2'>
-                <FormLabel htmlFor={`experience-${index}-workSummary`}>
-                    Work Summary
-                </FormLabel>
+                <FormLabel htmlFor={`experience-${index}-workSummary`}>Work Summary</FormLabel>
                 <Button
                     variant={"outline"}
                     type="button"
@@ -83,9 +85,10 @@ export default function RichTextEditor({ onChange, defaultValue, index, isPendin
                     <Editor
                         id={`experience-${index}-workSummary`}
                         containerProps={{ style: { resize: 'vertical' } }}
-                        value={value} onChange={(e) => {
+                        value={value}
+                        onChange={(e) => {
                             setValue(e.target.value);
-                            onChange(e.target.value);
+                            onChange(e.target.value); // Update the form value when the user changes the content.
                         }}
                         className='p-4 border border-gray-300 rounded-md'
                         disabled={isPending}

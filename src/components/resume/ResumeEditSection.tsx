@@ -26,6 +26,7 @@ const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
         setActiveSectionIndex((prevIndex) =>
             prevIndex > 0 ? prevIndex - 1 : prevIndex
         );
+        setEnableNext(false);
     };
 
     return (
@@ -69,7 +70,7 @@ const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
             </div>
 
             {/* Render the active section */}
-            <div className="mt-10">
+            <div className="my-10 p-5 shadow-lg rounded-lg border-y-primary border-y-4">
                 {activeSection.map((sections, index) =>
                     activeSectionIndex === sections.id ? (
                         <Fragment key={index}>

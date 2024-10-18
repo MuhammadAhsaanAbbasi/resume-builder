@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState, useTransition } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -46,7 +47,7 @@ export const ExperienceEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps)
     // Initialize form with context data
     const form = useForm<z.infer<typeof ExperienceFormSchema>>({
         resolver: zodResolver(ExperienceFormSchema),
-        defaultValues: { experience: resumeInfo.experience || [] },
+        defaultValues: { experience: experienceList },
     });
 
     // UseFieldArray to handle dynamic experience fields
@@ -117,13 +118,13 @@ export const ExperienceEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps)
             <p>Add Your previous Job experience</p>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <Accordion type="single" collapsible className="w-full max-w-4xl mx-auto my-12">
-                        {experienceFields.map((field, index) => {
+                    <Accordion type="single" collapsible className="w-full max-w-4xl mx-auto my-6">
+                        {experienceFields.map((fields, index) => {
                             const isCurrentlyWorking = form.watch(`experience.${index}.currentlyWorking`);
                             return (
-                                <AccordionItem key={field.id} value={`item-${index}`}>
+                                <AccordionItem key={index} value={`item-${index}`}>
                                     <AccordionTrigger className="p-4 text-xl font-semibold flex justify-between items-center w-full hover:bg-gray-100 transition duration-500">
-                                        {field.title}
+                                        {resumeInfo.experience[index]?.title || "Undefined Title"}
                                     </AccordionTrigger>
                                     <AccordionContent className='grid grid-cols-2 gap-3 border p-5 my-5 rounded-lg relative'>
                                         <FormField
@@ -297,14 +298,17 @@ export const ExperienceEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps)
                                             name={`experience.${index}.workSummary`}
                                             render={({ field }) => (
                                                 <RichTextEditor
-                                                    {...field}
                                                     index={index}
                                                     defaultValue={field.value || ""}
-                                                    onChange={(e) => updateResumeInfo('workSummary', e, index)}
+                                                    onChange={(value) => {
+                                                        field.onChange(value);
+                                                        updateResumeInfo('workSummary', value, index);
+                                                    }}
                                                     isPending={isPending}
                                                 />
                                             )}
                                         />
+
                                         <div className='flex justify-end col-span-2'>
                                             <Button
                                                 type="button"
