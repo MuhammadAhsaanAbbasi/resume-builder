@@ -1,17 +1,17 @@
 "use server"
-import { EducationFormSchema, ExperienceFormSchema, resumePersonalDetailsSchema, resumeSchema } from "@/schema/resume"
+import { EducationFormSchema, ExperienceFormSchema, resumePersonalDetailsSchema, resumeSchema, SkillsFormSchema } from "@/schema/resume"
 import * as z from "zod"
 import { v4 as uuidv4 } from 'uuid';
 
 
 const TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_KEY!
 
-export const generateResume = async (userId:string, userName:string,
+export const generateResume = async (userId: string, userName: string,
     values: z.infer<typeof resumeSchema>) => {
     const ValidatedTypes = resumeSchema.safeParse(values)
 
-    if(!ValidatedTypes.success){
-        return {error: "Invalid Types"}
+    if (!ValidatedTypes.success) {
+        return { error: "Invalid Types" }
     }
 
     const { title } = ValidatedTypes.data;
@@ -33,19 +33,19 @@ export const generateResume = async (userId:string, userName:string,
             body: JSON.stringify(data)
         })
 
-        if(request.status !== 201){
+        if (request.status !== 201) {
             const error = await request.json();
             return { error: error.detail };
         }
 
         const response = await request.json();
-        
+
         console.log(response.data.documentId);
 
-        return { success: response.data.documentId,  "messege": "Resume created"}
+        return { success: response.data.documentId, "messege": "Resume created" }
 
     } catch (error) {
-        if(error instanceof Error){
+        if (error instanceof Error) {
             return { error: "Invalid credentials!", message: error.message };
         }
         return { message: error }
@@ -53,7 +53,7 @@ export const generateResume = async (userId:string, userName:string,
 }
 
 
-export const getResumeList = async (UserId:string) => {
+export const getResumeList = async (UserId: string) => {
     try {
         const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes?filters[userId][$eq]=${UserId}`, {
             headers: {
@@ -63,19 +63,19 @@ export const getResumeList = async (UserId:string) => {
             method: "GET",
         })
 
-        if(request.status !== 200){
+        if (request.status !== 200) {
             const error = await request.json();
             return { error: error.detail };
         }
 
         const response = await request.json();
-        
+
         console.log(response);
 
-        return { success: response.data,  "messege": "Resume Details"}
+        return { success: response.data, "messege": "Resume Details" }
 
     } catch (error) {
-        if(error instanceof Error){
+        if (error instanceof Error) {
             return { error: "Invalid credentials!", message: error.message };
         }
         return { message: error }
@@ -83,17 +83,33 @@ export const getResumeList = async (UserId:string) => {
 }
 
 
-export const UpdatePersonalDetails = async (resumeId:string, values: z.infer<typeof resumePersonalDetailsSchema>) => {
+export const UpdateRequest = async (data: object, resumeId: string) => {
+    const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${TOKEN}`,
+        },
+        method: "PUT",
+        body: JSON.stringify(data)
+    })
+
+    const updateResponse = await request.json();
+
+    return updateResponse
+}
+
+
+export const UpdatePersonalDetails = async (resumeId: string, values: z.infer<typeof resumePersonalDetailsSchema>) => {
     const ValidatedTypes = resumePersonalDetailsSchema.safeParse(values)
 
-    if(!ValidatedTypes.success){
-        return {error: "Invalid Types"}
+    if (!ValidatedTypes.success) {
+        return { error: "Invalid Types" }
     }
 
     const { firstName, lastName, jobTitle, address, phone, email } = ValidatedTypes.data;
     try {
-        const data={
-            data:{
+        const data = {
+            data: {
                 firstName: firstName,
                 lastName: lastName,
                 jobTitle: jobTitle,
@@ -102,24 +118,15 @@ export const UpdatePersonalDetails = async (resumeId:string, values: z.infer<typ
                 email: email
             }
         }
-        
-        const updateRequest = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${TOKEN}`,
-            },
-            method: "PUT",
-            body: JSON.stringify(data)
-        })
 
-        const updateResponse = await updateRequest.json();
+        const response = await UpdateRequest(data, resumeId);
 
         // console.log(updateResponse)
 
-        return { success: updateResponse.data,  "message": "Successfully Resume Updated!!"}
+        return { success: response.data, "message": "Successfully Resume Updated!!" }
 
     } catch (error) {
-        if(error instanceof Error){
+        if (error instanceof Error) {
             return { error: "Invalid credentials!", message: error.message };
         }
         return { message: error }
@@ -127,71 +134,53 @@ export const UpdatePersonalDetails = async (resumeId:string, values: z.infer<typ
 }
 
 
-export const UpdateSummery = async (resumeId:string, summary:string) => {
+export const UpdateSummery = async (resumeId: string, summary: string) => {
     try {
-        const data={
-            data:{
+        const data = {
+            data: {
                 summary: summary
             }
         }
-        
-        const updateRequest = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${TOKEN}`,
-            },
-            method: "PUT",
-            body: JSON.stringify(data)
-        })
 
-        const updateResponse = await updateRequest.json();
+        const response = await UpdateRequest(data, resumeId);
 
         // console.log(updateResponse)
 
-        return { success: updateResponse.data,  "message": "Successfully Resume Updated!!"}
+        return { success: response.data, "message": "Successfully Resume Updated!!" }
 
     } catch (error) {
-        if(error instanceof Error){
+        if (error instanceof Error) {
             return { error: "Invalid credentials!", message: error.message };
         }
         return { message: error }
     }
 }
 
-export const UpdateExperience = async (resumeId:string, 
+export const UpdateExperience = async (resumeId: string,
     values: z.infer<typeof ExperienceFormSchema>) => {
     const ValidatedTypes = ExperienceFormSchema.safeParse(values)
 
-    if(!ValidatedTypes.success){
-        return {error: "Invalid Types"}
+    if (!ValidatedTypes.success) {
+        return { error: "Invalid Types" }
     }
 
     const { experience } = ValidatedTypes.data;
     try {
         console.log(experience)
-        const data={
-            data:{
+        const data = {
+            data: {
                 experience: experience
             }
         }
-        
-        const updateRequest = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${TOKEN}`,
-            },
-            method: "PUT",
-            body: JSON.stringify(data)
-        })
 
-        const updateResponse = await updateRequest.json();
+        const response = await UpdateRequest(data, resumeId);
 
         // console.log(`UpdatedResume: ${updateResponse}`) 
 
-        return { success: updateResponse.data, "message": "Successfully Resume Updated!!"}
+        return { success: response.data, "message": "Successfully Resume Updated!!" }
 
     } catch (error) {
-        if(error instanceof Error){
+        if (error instanceof Error) {
             return { error: "Invalid credentials!", message: error.message };
         }
         return { message: error }
@@ -199,40 +188,63 @@ export const UpdateExperience = async (resumeId:string,
 }
 
 
-export const UpdateEducation = async (resumeId:string, 
+export const UpdateEducation = async (resumeId: string,
     values: z.infer<typeof EducationFormSchema>) => {
     const ValidatedTypes = EducationFormSchema.safeParse(values)
 
-    if(!ValidatedTypes.success){
-        return {error: "Invalid Types"}
+    if (!ValidatedTypes.success) {
+        return { error: "Invalid Types" }
     }
 
     const { education } = ValidatedTypes.data;
     try {
         console.log(education)
-        const data={
-            data:{
+        const data = {
+            data: {
                 education: education
             }
         }
-        
-        const updateRequest = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${TOKEN}`,
-            },
-            method: "PUT",
-            body: JSON.stringify(data)
-        })
 
-        const updateResponse = await updateRequest.json();
+        const response = await UpdateRequest(data, resumeId);
 
         // console.log(`UpdatedResume: ${updateResponse}`) 
 
-        return { success: updateResponse.data, "message": "Successfully Resume Updated!!"}
+        return { success: response.data, "message": "Successfully Resume Updated!!" }
 
     } catch (error) {
-        if(error instanceof Error){
+        if (error instanceof Error) {
+            return { error: "Invalid credentials!", message: error.message };
+        }
+        return { message: error }
+    }
+}
+
+
+export const UpdateSkills = async (resumeId: string,
+    values: z.infer<typeof SkillsFormSchema>) => {
+    const ValidatedTypes = SkillsFormSchema.safeParse(values)
+
+    if (!ValidatedTypes.success) {
+        return { error: "Invalid Types" }
+    }
+
+    const { skills } = ValidatedTypes.data;
+    try {
+        console.log(skills)
+        const data = {
+            data: {
+                skills: skills
+            }
+        }
+
+        const response = await UpdateRequest(data, resumeId);
+
+        // console.log(`UpdatedResume: ${updateResponse}`) 
+
+        return { success: response.data, "message": "Successfully Resume Updated!!" }
+
+    } catch (error) {
+        if (error instanceof Error) {
             return { error: "Invalid credentials!", message: error.message };
         }
         return { message: error }

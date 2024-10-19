@@ -67,22 +67,22 @@ export const data: UserData = {
         {
             id:0,
             name:'React',
-            rating:80,
+            rating:4,
         },
         {
             id:1,
             name:'Next.js',
-            rating:100,
+            rating:5,
         },
         {
             id:2,
             name:'MongoDB',
-            rating:80,
+            rating:4,
         },
         {
             id:3,
             name:'PostgreSQL',
-            rating:100,
+            rating:5,
         }
     ]
 }

@@ -72,6 +72,14 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                         });
                     }
                 })
+                .catch((error) => {
+                    toast({
+                        title: "Failed",
+                        description: error.message,
+                        variant: "destructive",
+                        duration: 2000,
+                    });
+                })
                 .finally(() => {
                     setEnableNext(false);
                 });

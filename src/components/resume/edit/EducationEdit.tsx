@@ -105,6 +105,14 @@ export const EducationEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) 
                         });
                     }
                 })
+                .catch((error) => {
+                    toast({
+                        title: "Failed",
+                        description: error.message,
+                        variant: "destructive",
+                        duration: 2000,
+                    });
+                })
                 .finally(() => {
                     setEnableNext(false);
                 });
@@ -123,7 +131,7 @@ export const EducationEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) 
                                     { educationList[index].degree ? 
                                     <p>{educationList[index].degree} in {educationList[index].major}</p> : "Undefined Education"}
                                 </AccordionTrigger>
-                                <AccordionContent className='grid grid-cols-2 gap-3 border p-5 my-5 rounded-lg relative'>
+                                <AccordionContent className='grid grid-cols-2 gap-3 border p-5 my-5 rounded-lg'>
                                     <FormField
                                         control={form.control}
                                         name={`education.${index}.universityName`}

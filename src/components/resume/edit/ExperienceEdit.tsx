@@ -106,6 +106,14 @@ export const ExperienceEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps)
                         });
                     }
                 })
+                .catch((error) => {
+                    toast({
+                        title: "Failed",
+                        description: error.message,
+                        variant: "destructive",
+                        duration: 2000,
+                    });
+                })
                 .finally(() => {
                     setEnableNext(false);
                 });

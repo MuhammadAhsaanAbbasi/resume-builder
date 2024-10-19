@@ -65,6 +65,14 @@ export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsPr
                         });
                     }
                 })
+                .catch((error) => {
+                    toast({
+                        title: "Failed",
+                        description: error.message,
+                        variant: "destructive",
+                        duration: 2000,
+                    });
+                })
                 .finally(() => {
                     setEnableNext(false);
                 });

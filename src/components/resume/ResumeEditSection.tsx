@@ -8,7 +8,7 @@ import { activeSection } from '../../../constants/data';
 import { useRouter } from 'next/navigation';
 
 const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
-    const [activeSectionIndex, setActiveSectionIndex] = useState(3);
+    const [activeSectionIndex, setActiveSectionIndex] = useState(4);
     const [enableNext, setEnableNext] = useState(true); // Naming consistency
 
     const router = useRouter();
@@ -70,7 +70,7 @@ const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
             </div>
 
             {/* Render the active section */}
-            <div className="my-10 p-5 shadow-lg rounded-lg border-y-primary border-y-4">
+            <div className="my-10 p-5 shadow-lg rounded-lg border-y-primary border-y-4 md:sticky top-10">
                 {activeSection.map((sections, index) =>
                     activeSectionIndex === sections.id ? (
                         <Fragment key={index}>

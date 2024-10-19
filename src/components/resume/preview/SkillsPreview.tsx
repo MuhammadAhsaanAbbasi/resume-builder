@@ -7,15 +7,16 @@ const SkillsPreview = ({ resume_info }: { resume_info: UserData }) => {
             <div className='grid grid-cols-2 gap-4 my-2'>
                 {
                     resume_info.skills.map((skill, index) => (
-                        <div key={skill.id} className='flex items-center justify-between'>
+                        <div key={index} className='flex items-center justify-between'>
                             <h2>{skill.name}</h2>
                             <div className='h-2 bg-gray-200 w-[120px]'>
                                 <div className='h-2'
                                     style={{
                                         backgroundColor: resume_info.themeColor,
-                                        width: `${skill.rating}%`
+                                        width: skill?.rating * 20 + '%'
                                     }}
-                                />
+                                >
+                                </div>
                             </div>
                         </div>
                     ))

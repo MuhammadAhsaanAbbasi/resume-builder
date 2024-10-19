@@ -49,3 +49,16 @@ export const EducationFormSchema = z.object({
         message: 'At least one experience is required',
     }),
 });
+
+// Define the schema for a single Skills object
+const SkillSchema = z.object({
+    name: z.string().min(3, { message: 'Title is required' }),
+    rating: z.number().min(1, { message: 'Start date is required' }),
+});
+
+// Schema for an array of experiences
+export const SkillsFormSchema = z.object({
+    skills: z.array(SkillSchema).min(1, {
+        message: 'At least one experience is required',
+    }),
+});
