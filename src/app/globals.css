@@ -153,6 +153,12 @@
   padding-left: 2em;
 }
 
+ol, ul, menu {
+  list-style: disc;
+  margin: 0;
+  padding: 0;
+}
+
 @layer base {
   * {
     @apply border-border;

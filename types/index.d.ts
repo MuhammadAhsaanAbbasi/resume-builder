@@ -39,6 +39,7 @@ declare interface Skill {
 }
 
 declare interface UserData {
+    documentId? : string
     firstName: string;
     lastName: string;
     jobTitle: string;

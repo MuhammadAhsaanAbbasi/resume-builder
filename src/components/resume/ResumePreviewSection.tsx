@@ -7,11 +7,10 @@ import ExperiencePreview from './preview/ExperiencePreview'
 import EducationPreview from './preview/EducationPreview'
 import SkillsPreview from './preview/SkillsPreview'
 
-const ResumePreviewSection = () => {
+const ResumePreviewSection = ({resume_preview=false}:{resume_preview?: boolean}) => {
     const { resumeInfo } = useResumeContext();
     return (
-        <section className={`h-full shadow-md border-[1px] border-black print:block`}
-        >
+        <section className={`h-full shadow-md border-[1px] border-black`}>
             {/* Personal Details */}
             <PersonalDetailPreview resume_info={resumeInfo} />
             <section className='px-14 py-6'>
