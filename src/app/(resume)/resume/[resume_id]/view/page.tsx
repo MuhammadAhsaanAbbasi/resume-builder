@@ -3,7 +3,7 @@ import { ResumeContextProvider } from '@/components/context/ResumeContext';
 import ResumePreviewSection from '@/components/resume/ResumePreviewSection';
 import { Button } from '@/components/ui/button';
 import { getResumeData } from '@/lib/actions/resume.actions';
-import React, { startTransition, useEffect, useState, useTransition } from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import { data } from '../../../../../../constants/data';
 import { RWebShare } from "react-web-share";
 import { LoaderCircle } from 'lucide-react';
