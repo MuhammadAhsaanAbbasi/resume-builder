@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { Button } from '../ui/button'
-import { Edit, NotebookPenIcon, Trash, ViewIcon } from 'lucide-react'
+import { Edit, NotebookPenIcon, ScanEye, Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../ui/alert-dialog'
 
@@ -15,11 +15,11 @@ const ResumeListItem = ({ resume }: { resume: ResumeParams }) => {
     }
 
     return (
-        <div className='flex flex-col justify-between p-5 px-5 rounded-lg h-[280px] hover:scale-105 transition-all hover:shadow-md cursor-pointer text-black bg-gradient-to-b from-pink-100/60 via-purple-300/80 to-primary'>
+        <div className='flex flex-col justify-between p-5 px-5 rounded-lg h-[280px] hover:scale-105 transition-all hover:shadow-md cursor-pointer text-black bg-gradient-to-b from-pink-100/60 via-purple-300/80 to-blue-200'>
             <div className='flex justify-end m-1'>
                 <AlertDialog>
                     <AlertDialogTrigger asChild>
-                        <Trash className='h-6 w-6 text-primary cursor-pointer hover:scale-105 transition-all' />
+                        <Trash className='h-6 w-6 text-destructive hover:text-destructive/90 cursor-pointer hover:scale-105 transition-all' />
                     </AlertDialogTrigger>
                     <AlertDialogContent className='w-full bg-secondary'>
                         <AlertDialogHeader>
@@ -47,7 +47,8 @@ const ResumeListItem = ({ resume }: { resume: ResumeParams }) => {
             </div>
             <div className='w-full p-0.5 bg-gradient-to-b from-pink-100 via-purple-200 to-blue-200' />
             <div className='flex justify-between items-center gap-2'>
-                <ViewIcon onClick={() => router.push(`/resume/${resume.documentId}/view`)} className='h-6 w-6 text-primary cursor-pointer hover:scale-105 transition-all' />
+                <ScanEye onClick={() => router.push(`/resume/${resume.documentId}/view`)} 
+                className='h-6 w-6 text-muted hover:text-muted/90 cursor-pointer hover:scale-105 transition-all' />
                 <Button className='flex justify-center items-center gap-2'
                     onClick={() => router.push(`/resume/${resume.documentId}/edit`)}
                 >

@@ -250,3 +250,33 @@ export const UpdateSkills = async (resumeId: string,
         return { message: error }
     }
 }
+
+
+export const getResumeData = async (resumeId: string) => {
+    try {
+        const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}?populate[0]=experience&populate[1]=education&populate[2]=skills`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${TOKEN}`,
+            },
+            method: "GET",
+        })
+
+        if (request.status !== 200) {
+            const error = await request.json();
+            return { error: error.detail };
+        }
+
+        const response = await request.json();
+
+        console.log(response.data);
+
+        return { success: response.data }
+
+    } catch (error) {
+        if (error instanceof Error) {
+            return { error: "Invalid credentials!", message: error.message };
+        }
+        return { message: error }
+    }
+}

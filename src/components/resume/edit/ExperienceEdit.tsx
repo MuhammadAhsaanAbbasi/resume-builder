@@ -35,7 +35,7 @@ export const ExperienceEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps)
 
     // Initialize state from context or default value
     const [experienceList, setExperienceList] = useState(
-        resumeInfo.experience.map((exp, index) => {
+        resumeInfo?.experience.map((exp, index) => {
             return {
                 ...exp,
                 startDate: formatDateString(exp.startDate),

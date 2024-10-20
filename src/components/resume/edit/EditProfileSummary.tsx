@@ -19,7 +19,7 @@ interface ResumeDetailsProps {
 export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsProps) => {
     const { resumeInfo, setResumeInfo } = useResumeContext();
 
-    const [summary, setSummary] = useState(resumeInfo.summary || "");
+    const [summary, setSummary] = useState(resumeInfo?.summary || "");
     const [summeryLists, setSummeryLists] = useState<SummerParams[] | []>([]);
     const [isPending, startTransition] = useTransition();
 

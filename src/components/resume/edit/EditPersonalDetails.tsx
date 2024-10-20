@@ -103,7 +103,6 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                     <FormLabel htmlFor='first_name'>First Name</FormLabel>
                                     <FormControl>
                                         <Input id='first_name'
-                                            {...field}
                                             type="text"
                                             placeholder='First Name'
                                             className='p-2 border border-gray-300 rounded-md'

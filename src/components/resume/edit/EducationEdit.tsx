@@ -34,7 +34,7 @@ export const EducationEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) 
 
     // Initialize state from context or default value
     const [educationList, setEducationList] = useState(
-        resumeInfo.education.map((exp, index) => {
+        resumeInfo?.education.map((exp, index) => {
             return {
                 ...exp,
                 startDate: formatDateString(exp.startDate),
@@ -50,7 +50,7 @@ export const EducationEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) 
     });
 
     // UseFieldArray to handle dynamic experience fields
-    const { fields: educationFields, append: appendEducation, remove: removeFormEducation } = useFieldArray({
+    const { append: appendEducation, remove: removeFormEducation } = useFieldArray({
         name: 'education',
         control: form.control,
     });
@@ -125,7 +125,7 @@ export const EducationEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <Accordion type="single" collapsible className="w-full max-w-4xl mx-auto my-6">
-                        {educationFields.map((fields, index) => (
+                        {educationList.map((fields, index) => (
                             <AccordionItem key={index} value={`item-${index}`}>
                                 <AccordionTrigger className="p-4 text-xl font-semibold flex justify-between items-center w-full hover:bg-gray-100 transition duration-500">
                                     { educationList[index].degree ? 
