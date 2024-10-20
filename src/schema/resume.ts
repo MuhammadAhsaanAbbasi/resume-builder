@@ -6,11 +6,11 @@ export const resumeSchema = z.object({
 
 
 export const resumePersonalDetailsSchema = z.object({
-    firstName: z.string().min(3, { message: "First Name is required" }),
-    lastName: z.string().min(3, { message: "Last Name is required" }),
-    jobTitle: z.string().min(3, { message: "Job Title is required" }),
-    address: z.string().min(3, { message: "Address is required" }),
-    phone: z.string().min(3, { message: "Phone is required" }),
+    firstName: z.string(),
+    lastName: z.string(),
+    jobTitle: z.string(),
+    address: z.string(),
+    phone: z.string(),
     email: z.string().email({ message: "Email is required" }),
 })
 

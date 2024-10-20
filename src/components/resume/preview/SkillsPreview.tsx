@@ -1,6 +1,7 @@
 import React from 'react'
 
 const SkillsPreview = ({ resume_info }: { resume_info: UserData }) => {
+    const themeColor = resume_info.themeColor;
     return (
         <div className='my-4'>
             <h3 className='text-xl font-serif font-bold'>Skills</h3>
@@ -12,7 +13,7 @@ const SkillsPreview = ({ resume_info }: { resume_info: UserData }) => {
                             <div className='h-2 bg-gray-200 w-[120px]'>
                                 <div className='h-2'
                                     style={{
-                                        backgroundColor: resume_info?.themeColor || "#489DA9",
+                                        backgroundColor: themeColor,
                                         width:`${skill?.rating*20}%`
                                     }}
                                 />

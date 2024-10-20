@@ -2,7 +2,7 @@ import { LocateIcon, Mail, MapPin, Phone } from 'lucide-react'
 import React from 'react'
 
 const PersonalDetailPreview = ({ resume_info }: { resume_info: UserData }) => {
-    const themeColor = resume_info.themeColor
+    const themeColor = resume_info.themeColor;
     return (
         <div
             style={{
@@ -13,7 +13,7 @@ const PersonalDetailPreview = ({ resume_info }: { resume_info: UserData }) => {
                 <h2 className={`text-3xl font-bold font-serif`}>
                     {resume_info.firstName} {resume_info.lastName}
                 </h2>
-                <h2 className='text-lg font-medium'>{resume_info.jobTitle.toUpperCase()}</h2>
+                <h2 className='text-lg font-medium'>{resume_info.jobTitle}</h2>
             </div>
             <hr className='w-full h-[1.5px] bg-secondary' />
             <div className='flex justify-center items-center gap-4 px-14 py-3'>

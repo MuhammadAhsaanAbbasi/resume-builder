@@ -33,7 +33,7 @@ export const EducationEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) 
     };
 
     // Initialize state from context or default value
-    const [educationList, setEducationList] = useState(
+    const [educationList, setEducationList] = useState<Education[] |[]>(
         resumeInfo?.education.map((exp, index) => {
             return {
                 ...exp,
@@ -50,7 +50,7 @@ export const EducationEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) 
     });
 
     // UseFieldArray to handle dynamic experience fields
-    const { append: appendEducation, remove: removeFormEducation } = useFieldArray({
+    const { fields: educationFields, append: appendEducation, remove: removeFormEducation } = useFieldArray({
         name: 'education',
         control: form.control,
     });
@@ -125,11 +125,11 @@ export const EducationEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <Accordion type="single" collapsible className="w-full max-w-4xl mx-auto my-6">
-                        {educationList.map((fields, index) => (
+                        {educationFields.map((fields, index) => (
                             <AccordionItem key={index} value={`item-${index}`}>
                                 <AccordionTrigger className="p-4 text-xl font-semibold flex justify-between items-center w-full hover:bg-gray-100 transition duration-500">
-                                    { educationList[index].degree ? 
-                                    <p>{educationList[index].degree} in {educationList[index].major}</p> : "Undefined Education"}
+                                    {educationList[index]?.degree ? 
+                                    <p>{educationList[index]?.degree} in {educationList[index]?.major}</p> : "Undefined Education"}
                                 </AccordionTrigger>
                                 <AccordionContent className='grid grid-cols-2 gap-3 border p-5 my-5 rounded-lg'>
                                     <FormField
@@ -306,7 +306,7 @@ export const EducationEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) 
                             disabled={isPending || isLoading}
                         >
                             <Plus />
-                            <span>Add New Experience</span>
+                            <span>Add New Education</span>
                         </Button>
                         <Button
                             type="submit"

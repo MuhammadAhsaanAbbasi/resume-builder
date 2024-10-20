@@ -25,18 +25,10 @@ interface ResumeDetailsProps {
 export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsProps) => {
     const { resumeInfo, setResumeInfo } = useResumeContext();
 
-    const [isPending, startTransition] = useTransition();
+    const [isPending, startTransition] = useTransition()
 
     const form = useForm<z.infer<typeof resumePersonalDetailsSchema>>({
         resolver: zodResolver(resumePersonalDetailsSchema),
-        defaultValues: {
-            firstName: resumeInfo.firstName,
-            lastName: resumeInfo.lastName,
-            jobTitle: resumeInfo.jobTitle,
-            address: resumeInfo.address,
-            phone: resumeInfo.phone,
-            email: resumeInfo.email,
-        }
     })
 
     const updateResumeInfo = (e: ChangeEvent<HTMLInputElement>) => {
@@ -103,8 +95,10 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                     <FormLabel htmlFor='first_name'>First Name</FormLabel>
                                     <FormControl>
                                         <Input id='first_name'
+                                            {...field}
                                             type="text"
                                             placeholder='First Name'
+                                            defaultValue={resumeInfo.firstName}
                                             className='p-2 border border-gray-300 rounded-md'
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
@@ -128,6 +122,7 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                             type="text"
                                             placeholder='Last Name'
                                             className='p-2 border border-gray-300 rounded-md'
+                                            defaultValue={resumeInfo.lastName}
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
                                                 updateResumeInfo(e);
@@ -150,6 +145,7 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                             type="text"
                                             placeholder='Full Stack Developer'
                                             className='p-2 border border-gray-300 rounded-md'
+                                            defaultValue={resumeInfo.jobTitle}
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
                                                 updateResumeInfo(e);
@@ -172,6 +168,7 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                             type="text"
                                             placeholder='Karachi, Pakistan'
                                             className='p-2 border border-gray-300 rounded-md'
+                                            defaultValue={resumeInfo.address}
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
                                                 updateResumeInfo(e);
@@ -192,8 +189,9 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                         <Input id='email'
                                             {...field}
                                             type="email"
-                                            placeholder='abc@gmail.com'
                                             className='p-2 border border-gray-300 rounded-md'
+                                            placeholder='abc@gmail.com'
+                                            defaultValue={resumeInfo.email}
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
                                                 updateResumeInfo(e);
@@ -213,8 +211,9 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                     <FormControl>
                                         <Input id='phone_number'
                                             {...field}
-                                            placeholder='Phone Number'
                                             className='p-2 border border-gray-300 rounded-md'
+                                            placeholder='Phone Number'
+                                            defaultValue={resumeInfo.phone}
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
                                                 updateResumeInfo(e);

@@ -10,7 +10,7 @@ const Header = () => {
     const {isSignedIn} = useUser();
     const path = usePathname();
     return (
-        <header className='px-6 sm:px-12 md:px-18 flex justify-between items-center gap-3 shadow-md border-b-2 border-solid'>
+        <header className='px-6 sm:px-12 md:px-18 flex justify-between items-center gap-3 shadow-md border-b-2 border-solid print:hidden'>
             <Link href={"/"}
                 className='flex items-center'
             >

@@ -161,3 +161,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@media print{
+  body{
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+@page{
+  size: auto;
+  margin: 0mm;
+}

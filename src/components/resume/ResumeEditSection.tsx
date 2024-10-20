@@ -8,7 +8,7 @@ import { activeSection } from '../../../constants/data';
 import { useRouter } from 'next/navigation';
 
 const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
-    const [activeSectionIndex, setActiveSectionIndex] = useState(3);
+    const [activeSectionIndex, setActiveSectionIndex] = useState(0);
     const [enableNext, setEnableNext] = useState(true); // Naming consistency
 
     const router = useRouter();

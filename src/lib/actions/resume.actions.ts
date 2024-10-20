@@ -260,6 +260,7 @@ export const getResumeData = async (resumeId: string) => {
                 'Authorization': `Bearer ${TOKEN}`,
             },
             method: "GET",
+            cache: "no-cache",
         })
 
         if (request.status !== 200) {

@@ -8,24 +8,35 @@ import EducationPreview from './preview/EducationPreview'
 import SkillsPreview from './preview/SkillsPreview'
 
 const ResumePreviewSection = () => {
-    const {resumeInfo} = useResumeContext();
+    const { resumeInfo } = useResumeContext();
     return (
-        <section className={`h-full shadow-md border-[1px] border-black`}
+        <section className={`h-full shadow-md border-[1px] border-black print:block`}
         >
             {/* Personal Details */}
             <PersonalDetailPreview resume_info={resumeInfo} />
             <section className='px-14 py-6'>
                 {/* Summary */}
-                <SummaryPreview resume_info={resumeInfo} />
+                {
+                    resumeInfo.summary && <SummaryPreview resume_info={resumeInfo} />
+                }
 
                 {/* Experience */}
-                <ExperiencePreview resume_info={resumeInfo} />
+                {
+                    resumeInfo.experience.length > 0 &&
+                    <ExperiencePreview resume_info={resumeInfo} />
+                }
 
                 {/* Education */}
-                <EducationPreview resume_info={resumeInfo} />
+                {
+                    resumeInfo.education.length > 0 &&
+                    <EducationPreview resume_info={resumeInfo} />
+                }
 
                 {/* Skills */}
-                <SkillsPreview resume_info={resumeInfo} />
+                {
+                    resumeInfo.skills.length > 0 &&
+                    <SkillsPreview resume_info={resumeInfo} />
+                }
             </section>
         </section>
     )

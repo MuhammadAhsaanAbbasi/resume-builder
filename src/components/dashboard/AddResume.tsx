@@ -140,7 +140,7 @@ const AddResume = () => {
                                         Cancel
                                     </Button>
                                     <Button type="submit" disabled={isLoading}>
-                                        {isLoading ? "Generating..." : "Generate Form"}
+                                        {isLoading ? "Generating..." : "Create Resume"}
                                     </Button>
                                 </div>
                             </DialogFooter>
