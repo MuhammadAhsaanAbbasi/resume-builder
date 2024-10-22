@@ -1,5 +1,4 @@
-import AddResume from '@/components/dashboard/AddResume'
-import ResumeList from '@/components/dashboard/ResumeList'
+import Resumes from '@/components/dashboard/Resumes'
 import React from 'react'
 
 export default function DashboardPage() {
@@ -7,10 +6,7 @@ export default function DashboardPage() {
         <div className='p-10 px-8 sm:px-12 md:px-20 lg:px-24'>
             <h2 className='font-bold text-3xl'>My Resume</h2>
             <p className='font-normal text-[#74736A] text-lg'>Start Creating AI resume to your next Job role</p>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 gap-x-5 my-3'>
-                <AddResume />
-                <ResumeList />
-            </div>
+            <Resumes />
         </div>
     )
 }

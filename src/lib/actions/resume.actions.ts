@@ -251,7 +251,6 @@ export const UpdateSkills = async (resumeId: string,
     }
 }
 
-
 export const getResumeData = async (resumeId: string) => {
     try {
         const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}?populate[0]=experience&populate[1]=education&populate[2]=skills`, {
@@ -278,6 +277,32 @@ export const getResumeData = async (resumeId: string) => {
         if (error instanceof Error) {
             return { error: "Invalid credentials!", message: error.message };
         }
+        return { message: error }
+    }
+}
+
+export const deleteResume = async (resumeId: string) => {
+    try {
+        const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${TOKEN}`,
+            },
+            method: "DELETE",
+        })
+
+        if (request.status !== 204) {
+            const error = await request.json();
+            return { error: error.detail };
+        }
+
+        const response = await request.json();
+
+        console.log(response);
+
+        return { success: response, message: "Resume Deleted Successfully" }
+
+    } catch (error) {
         return { message: error }
     }
 }
