@@ -1,8 +1,6 @@
 "use client";
-
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import Link from "next/link";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { StarHalfIcon } from "lucide-react";
