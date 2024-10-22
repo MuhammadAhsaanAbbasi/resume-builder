@@ -16,24 +16,24 @@ const ResumePreviewSection = ({resume_preview=false}:{resume_preview?: boolean})
             <section className='px-14 py-6'>
                 {/* Summary */}
                 {
-                    resumeInfo.summary && <SummaryPreview resume_info={resumeInfo} />
+                    resumeInfo?.summary && <SummaryPreview resume_info={resumeInfo} />
                 }
 
                 {/* Experience */}
                 {
-                    resumeInfo.experience.length > 0 &&
+                    resumeInfo?.experience.length > 0 &&
                     <ExperiencePreview resume_info={resumeInfo} />
                 }
 
                 {/* Education */}
                 {
-                    resumeInfo.education.length > 0 &&
+                    resumeInfo?.education.length > 0 &&
                     <EducationPreview resume_info={resumeInfo} />
                 }
 
                 {/* Skills */}
                 {
-                    resumeInfo.skills.length > 0 &&
+                    resumeInfo?.skills.length > 0 &&
                     <SkillsPreview resume_info={resumeInfo} />
                 }
             </section>

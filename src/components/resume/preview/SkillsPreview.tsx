@@ -1,7 +1,7 @@
 import React from 'react'
 
 const SkillsPreview = ({ resume_info }: { resume_info: UserData }) => {
-    const themeColor = resume_info.themeColor;
+    const themeColor = resume_info?.themeColor;
     return (
         <div className='my-4'>
             <h3 className='text-xl font-serif font-bold'>Skills</h3>

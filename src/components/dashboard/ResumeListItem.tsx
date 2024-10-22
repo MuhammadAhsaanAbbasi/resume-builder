@@ -1,7 +1,7 @@
 "use client";
-import React, { useTransition } from 'react';
+import React, { useState, useTransition } from 'react';
 import { Button } from '../ui/button';
-import { Edit, NotebookPenIcon, ScanEye, Trash } from 'lucide-react';
+import { Edit, LoaderCircle, NotebookPenIcon, ScanEye, Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import {
     AlertDialog,
@@ -23,39 +23,34 @@ interface ResumeProps {
 }
 
 const ResumeListItem = ({ resume, setUpdateFieldTrigger }: ResumeProps) => {
-    const [isLoading, startLoading] = useTransition();
+    const [openAlert, setOpenAlert] = useState(false);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const handleDelete = async () => {
-        const resumeId = resume.documentId;
-        startLoading(() => {
-            deleteResume(resumeId)
-                .then((data) => {
-                    if (data?.error) {
-                        toast({
-                            title: "Failed",
-                            description: data?.error,
-                            variant: "destructive",
-                            duration: 2000,
-                        });
-                    }
-                    if (data?.success) {
-                        toast({
-                            title: "Successfully Deleted",
-                            description: data.message as string,
-                            duration: 2000,
-                        });
-                        setUpdateFieldTrigger(Date.now());
-                    }
-                })
-                .catch((err) => {
-                    toast({
-                        title: "Failed",
-                        description: err.message,
-                        variant: "destructive",
-                        duration: 2000,
-                    });
+        setLoading(true);
+        await deleteResume(resume.documentId).then(resp => {
+            if (resp?.error) {
+                toast({
+                    title: "Failed",
+                    description: resp?.error,
+                    variant: "destructive",
+                    duration: 2000,
                 });
+            }
+            if (resp?.success) {
+                toast({
+                    title: "Successfully Created",
+                    description: resp.message as string,
+                    duration: 2000,
+                });
+                setUpdateFieldTrigger(Date.now());
+            }
+            setOpenAlert(false);
+        }).catch(error => {
+            console.error(error);
+        }).finally(() => {
+            setLoading(false);
         });
     };
 
@@ -75,9 +70,12 @@ const ResumeListItem = ({ resume, setUpdateFieldTrigger }: ResumeProps) => {
                             </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                            <AlertDialogCancel disabled={isLoading}>Cancel</AlertDialogCancel>
-                            <AlertDialogAction disabled={isLoading} onClick={handleDelete}>
-                                Continue
+                            <AlertDialogCancel disabled={loading}>Cancel</AlertDialogCancel>
+                            <AlertDialogAction disabled={loading} onClick={handleDelete}>
+                                {loading ?
+                                    <LoaderCircle className='h-6 w-6 animate-spin' />
+                                    : "Continue"
+                                }
                             </AlertDialogAction>
                         </AlertDialogFooter>
                     </AlertDialogContent>

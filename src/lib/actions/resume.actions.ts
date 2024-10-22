@@ -285,7 +285,6 @@ export const deleteResume = async (resumeId: string) => {
     try {
         const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${TOKEN}`,
             },
             method: "DELETE",

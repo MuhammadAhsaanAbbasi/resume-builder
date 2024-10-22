@@ -98,7 +98,7 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                             {...field}
                                             type="text"
                                             placeholder='First Name'
-                                            defaultValue={resumeInfo.firstName}
+                                            defaultValue={resumeInfo?.firstName}
                                             className='p-2 border border-gray-300 rounded-md'
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
@@ -122,7 +122,7 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                             type="text"
                                             placeholder='Last Name'
                                             className='p-2 border border-gray-300 rounded-md'
-                                            defaultValue={resumeInfo.lastName}
+                                            defaultValue={resumeInfo?.lastName}
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
                                                 updateResumeInfo(e);
@@ -145,7 +145,7 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                             type="text"
                                             placeholder='Full Stack Developer'
                                             className='p-2 border border-gray-300 rounded-md'
-                                            defaultValue={resumeInfo.jobTitle}
+                                            defaultValue={resumeInfo?.jobTitle}
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
                                                 updateResumeInfo(e);
@@ -168,7 +168,7 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                             type="text"
                                             placeholder='Karachi, Pakistan'
                                             className='p-2 border border-gray-300 rounded-md'
-                                            defaultValue={resumeInfo.address}
+                                            defaultValue={resumeInfo?.address}
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
                                                 updateResumeInfo(e);
@@ -191,7 +191,7 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                             type="email"
                                             className='p-2 border border-gray-300 rounded-md'
                                             placeholder='abc@gmail.com'
-                                            defaultValue={resumeInfo.email}
+                                            defaultValue={resumeInfo?.email}
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
                                                 updateResumeInfo(e);
@@ -213,7 +213,7 @@ export const EditPersonalDetails = ({ resume_id, setEnableNext }: ResumeDetailsP
                                             {...field}
                                             className='p-2 border border-gray-300 rounded-md'
                                             placeholder='Phone Number'
-                                            defaultValue={resumeInfo.phone}
+                                            defaultValue={resumeInfo?.phone}
                                             onChange={(e) => {
                                                 field.onChange(e.target.value);
                                                 updateResumeInfo(e);
