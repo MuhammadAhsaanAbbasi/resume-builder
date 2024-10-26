@@ -37,7 +37,7 @@ const ResumeEditSection = ({ resume_id }: { resume_id: string }) => {
                         <span>Home</span>
                         <Home />
                     </Button>
-                    <ThemeButton />
+                    <ThemeButton resume_id={resume_id} />
                 </div>
                 <div className="flex items-center gap-2">
                     {activeSectionIndex > 0 && (

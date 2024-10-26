@@ -7,7 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { z } from 'zod'
 import { toast } from '@/hooks/use-toast';
-import { ToastAction } from '@/components/ui/toast';
 import { UpdateSkills } from '@/lib/actions/resume.actions';
 import { Input } from '@/components/ui/input';
 import { Rating, RoundedStar } from '@smastrom/react-rating'
@@ -95,9 +94,6 @@ export const SkillsEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps) => 
                             title: "Updated!",
                             description: (data.message) as string,
                             duration: 2000,
-                            action: (
-                                <ToastAction altText="Resume Update!!">Updated</ToastAction>
-                            ),
                         });
                     }
                 })

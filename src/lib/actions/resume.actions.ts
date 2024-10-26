@@ -247,6 +247,29 @@ export const UpdateSkills = async (resumeId: string,
     }
 }
 
+export const UpdateThemeColor = async (resumeId: string, themeColor: string) => {
+    console.log(themeColor)
+    try {
+        const data = {
+            data: {
+                themeColor: themeColor
+            }
+        }
+
+        const response = await UpdateRequest(data, resumeId);
+
+        // console.log(`UpdatedResume: ${updateResponse}`) 
+
+        return { success: response.data, "message": "Successfully Resume Updated!!" }
+
+    } catch (error) {
+        if (error instanceof Error) {
+            return { error: "Invalid credentials!", message: error.message };
+        }
+        return { message: error }
+    }
+}
+
 export const getResumeData = async (resumeId: string) => {
     try {
         const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}?populate[0]=experience&populate[1]=education&populate[2]=skills`, {
@@ -262,7 +285,7 @@ export const getResumeData = async (resumeId: string) => {
 
         const response = await request.json();
 
-        console.log(response.data);
+        // console.log(response.data);
 
         return { success: response.data }
 

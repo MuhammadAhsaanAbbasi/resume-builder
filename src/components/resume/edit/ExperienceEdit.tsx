@@ -100,9 +100,6 @@ export const ExperienceEdit = ({ resume_id, setEnableNext }: ResumeDetailsProps)
                             title: "Updated!",
                             description: (data.message) as string,
                             duration: 2000,
-                            action: (
-                                <ToastAction altText="Resume Update!!">Updated</ToastAction>
-                            ),
                         });
                     }
                 })
