@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_KEY!
 
 const HEADERS = {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
     'Authorization': `Bearer ${TOKEN}`,
 }
 
@@ -275,22 +275,24 @@ export const getResumeData = async (resumeId: string) => {
 }
 
 export const deleteResume = async (resumeId: string) => {
+    const url = `${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`;
     try {
-        const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
+        console.log(typeof(resumeId))
+        const request = await fetch(url, {
             headers: HEADERS,
             method: "DELETE",
         })
 
-        if (request.status !== 204) {
-            const error = await request.json();
-            return { error: error.detail };
+        if (!request.ok) {
+            const errorData = await request.json();
+            return { error: errorData.message || "Network response was not ok" };
         }
 
-        const response = await request.json();
+        // const response = await request.json();
 
-        console.log(response);
+        // console.log(response);
 
-        return { success: response, message: "Resume Deleted Successfully" }
+        return { success: "Resume Deleted Successfully" }
 
     } catch (error) {
         if (error instanceof Error) {

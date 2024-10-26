@@ -24,12 +24,14 @@ interface ResumeProps {
 
 const ResumeListItem = ({ resume, setUpdateFieldTrigger }: ResumeProps) => {
     const [openAlert, setOpenAlert] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, startLoading] = useTransition();
     const router = useRouter();
 
     const handleDelete = async () => {
-        setLoading(true);
-        await deleteResume(resume.documentId).then(resp => {
+        const documentId = resume.documentId;
+        console.log(typeof(documentId))
+        startLoading(() => {
+            deleteResume(documentId).then(resp => {
             if (resp?.error) {
                 toast({
                     title: "Failed",
@@ -40,24 +42,29 @@ const ResumeListItem = ({ resume, setUpdateFieldTrigger }: ResumeProps) => {
             }
             if (resp?.success) {
                 toast({
-                    title: "Successfully Created",
-                    description: resp.message as string,
+                    title: "Successfully Deleted!",
+                    description: resp.success,
                     duration: 2000,
                 });
                 setUpdateFieldTrigger(Date.now());
             }
-            setOpenAlert(false);
-        }).catch(error => {
-            console.error(error);
+        }).catch((error) => {
+            toast({
+                title: "Failed",
+                description: error.message,
+                variant: "destructive",
+            });
+            console.error(error.message);
         }).finally(() => {
-            setLoading(false);
+            setOpenAlert(false);
         });
+    })
     };
 
     return (
         <div className='flex flex-col justify-between p-5 px-5 rounded-lg h-[280px] hover:scale-105 transition-all hover:shadow-md cursor-pointer text-black bg-gradient-to-b from-pink-100/60 via-purple-300/80 to-blue-200'>
             <div className='flex justify-end m-1'>
-                <AlertDialog>
+                <AlertDialog open={openAlert} onOpenChange={setOpenAlert}>
                     <AlertDialogTrigger asChild>
                         <Trash className='h-6 w-6 text-destructive hover:text-destructive/90 cursor-pointer hover:scale-105 transition-all' />
                     </AlertDialogTrigger>
