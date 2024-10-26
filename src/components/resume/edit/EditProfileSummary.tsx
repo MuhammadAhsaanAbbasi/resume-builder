@@ -22,6 +22,7 @@ export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsPr
     const [summary, setSummary] = useState(resumeInfo?.summary || "");
     const [summeryLists, setSummeryLists] = useState<SummerParams[] | []>([]);
     const [isPending, startTransition] = useTransition();
+    const [isSummaryLoading, startSummaryLoading] = useState(false);
 
     useEffect(() => {
         startTransition(() => {
@@ -33,6 +34,8 @@ export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsPr
     }, [summary, setResumeInfo])
 
     const generateSummary = async () => {
+
+        startSummaryLoading(true);
         const prompt = `Job Title: ${resumeInfo.jobTitle} , Depends on job title give me list of  summery for 3 Experience levels: Fresher, Mid-Level, Experienced in 3 -4 lines in array format, With summery and experience_level Field in JSON Format`
         const request = await AISession.sendMessage(prompt);
         const response: SummerParams[] = JSON.parse(request.response.text());
@@ -40,6 +43,7 @@ export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsPr
         console.log(response);
 
         setSummeryLists(response);
+        startSummaryLoading(false);
     }
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -94,8 +98,13 @@ export const EditProfileSummary = ({ resume_id, setEnableNext }: ResumeDetailsPr
                         disabled={isPending}
                         onClick={generateSummary}
                     >
-                        <Bot className='h-5 w-5' />
-                        <span>Generate from A.I</span>
+                        {isSummaryLoading ?
+                            <LoaderCircle className='animate-spin' /> :
+                            <>
+                                <Bot className='h-5 w-5' />
+                                <span>Generate from A.I</span>
+                            </>
+                        }
                     </Button>
                 </div>
                 <Textarea

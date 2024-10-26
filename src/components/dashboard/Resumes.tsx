@@ -12,10 +12,9 @@ const Resumes = () => {
     const [isPending, startTransition] = useTransition();
 
     const { user } = useUser();
-    const UserId = user?.id;
+    const UserId = user?.id as string;
 
     useEffect(() => {
-        if (UserId) {
             startTransition(() => {
                 getResumeList(UserId)
                     .then((res) => {
@@ -38,8 +37,7 @@ const Resumes = () => {
                         });
                     });
             });
-        }
-    }, [UserId, updateFieldTrigger]);
+    },[UserId, updateFieldTrigger]);
 
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 gap-x-5 my-3'>

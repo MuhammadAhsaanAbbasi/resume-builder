@@ -6,6 +6,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 const TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_KEY!
 
+const HEADERS = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${TOKEN}`,
+}
+
 export const generateResume = async (userId: string, userName: string,
     values: z.infer<typeof resumeSchema>) => {
     const ValidatedTypes = resumeSchema.safeParse(values)
@@ -25,10 +30,7 @@ export const generateResume = async (userId: string, userName: string,
     }
     try {
         const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${TOKEN}`,
-            },
+            headers: HEADERS,
             method: "POST",
             body: JSON.stringify(data)
         })
@@ -56,10 +58,7 @@ export const generateResume = async (userId: string, userName: string,
 export const getResumeList = async (UserId: string) => {
     try {
         const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes?filters[userId][$eq]=${UserId}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${TOKEN}`,
-            },
+            headers: HEADERS,
             method: "GET",
         })
 
@@ -85,10 +84,7 @@ export const getResumeList = async (UserId: string) => {
 
 export const UpdateRequest = async (data: object, resumeId: string) => {
     const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${TOKEN}`,
-        },
+        headers: HEADERS,
         method: "PUT",
         body: JSON.stringify(data)
     })
@@ -254,10 +250,7 @@ export const UpdateSkills = async (resumeId: string,
 export const getResumeData = async (resumeId: string) => {
     try {
         const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}?populate[0]=experience&populate[1]=education&populate[2]=skills`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${TOKEN}`,
-            },
+            headers: HEADERS,
             method: "GET",
             cache: "no-cache",
         })
@@ -284,9 +277,7 @@ export const getResumeData = async (resumeId: string) => {
 export const deleteResume = async (resumeId: string) => {
     try {
         const request = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}/api/user-resumes/${resumeId}`, {
-            headers: {
-                'Authorization': `Bearer ${TOKEN}`,
-            },
+            headers: HEADERS,
             method: "DELETE",
         })
 
@@ -302,6 +293,9 @@ export const deleteResume = async (resumeId: string) => {
         return { success: response, message: "Resume Deleted Successfully" }
 
     } catch (error) {
+        if (error instanceof Error) {
+            return { error: "Invalid credentials!", message: error.message };
+        }
         return { message: error }
     }
 }
