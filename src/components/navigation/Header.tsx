@@ -26,14 +26,14 @@ const Header = () => {
             </Link>
             {
                 isSignedIn ? 
-                <div className='flex items-center gap-4'>
+                <nav className='flex items-center gap-4'>
                     <Link href={"/dashboard"}>
                     <Button variant={"outline"} className={`${path==="/dashboard" && "bg-accent text-accent-foreground"}`}>
                         Dashboard
                     </Button>
                     </Link>
                     <UserButton />
-                </div>
+                </nav>
                 : 
                 <SignInButton>
                     <Button>
