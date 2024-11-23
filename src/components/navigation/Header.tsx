@@ -20,7 +20,7 @@ const Header = () => {
                     width={60}
                     height={60}
                     className='w-20 h-auto md:w-auto' 
-                    priority
+                    priority={true}
                 />
                 <span className='text-2xl font-bold text-primary'>SkillForge</span>
             </Link>
